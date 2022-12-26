@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "570091056367",
+    "project_id": "replanit-791c4",
+    "storage_bucket": "replanit-791c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570091056367:android:bbeba4742c69a8b8dcff1a",
+        "android_client_info": {
+          "package_name": "com.example.responsive_admin_dashboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570091056367-effnht3pqrng2olhlrnf5tilh2bdqf40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeDSC3Sod-sUWdxJi9o0HQ-7oyOL706Bg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570091056367-effnht3pqrng2olhlrnf5tilh2bdqf40.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "570091056367-2losuuv3v9uu6j2l31p4b2ir0qccuh8i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
