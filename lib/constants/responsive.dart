@@ -6,6 +6,7 @@ class Responsive extends StatelessWidget {
   static const String loginScreen = '/login';
   static const String marketPlaceScreen = '/market_place';
   static const String dashBoardScreen = '/dash_board';
+  static const String landingScreen = '/landing';
 
   final Widget mobile;
   final Widget? tablet;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/main.dart';
 import 'package:responsive_admin_dashboard/screens/dash_board_screen.dart';
+import 'package:responsive_admin_dashboard/screens/landing_screen.dart';
 import 'package:responsive_admin_dashboard/screens/market_place_screen.dart';
 import 'package:responsive_admin_dashboard/screens/login_screen.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
@@ -20,6 +21,9 @@ class MyRoutes {
       case Responsive.dashBoardScreen:
         print('Navigated to DashboardScreen');
         return MaterialPageRoute(builder: ((context) => DashBoardScreen()));
+      case Responsive.landingScreen:
+        print('Navigated to LandingScreen');
+        return MaterialPageRoute(builder: ((context) => LandingScreen()));
       default:
     }
     return MaterialPageRoute(builder:(context) => Scaffold(
