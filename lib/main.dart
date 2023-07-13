@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
             // ignore: prefer_const_constructors
             return MaterialApp(
               onGenerateRoute: MyRoutes.generateRotes,
-              initialRoute: Responsive.landingScreen,
+              initialRoute: Responsive.laptopScreen,
             );
           }
           return const Center(

@@ -29,7 +29,6 @@ class DashBoardScreen extends StatelessWidget {
           ],
         ),
       );
-        
       },
       ),
 

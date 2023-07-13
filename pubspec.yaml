@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
+  font_awesome_flutter: ^9.1.0
   flutter:
     sdk: flutter
 
@@ -33,6 +34,9 @@ dependencies:
   provider: ^5.0.0
   firebase_auth: ^4.2.1
   firebase_core: ^2.4.0
+  http: ^0.13.5
+  google_fonts: ^4.0.4
+  breadcrumbs: ^0.1.0
 
 dev_dependencies:
   flutter_test:
@@ -82,3 +86,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+fonts:
+  - family: FontAwesome
+    fonts:
+      - asset: assets/fonts/fa-brands-400.ttf
+      - asset: assets/fonts/fa-regular-400.ttf
+      - asset: assets/fonts/fa-solid-900.ttf

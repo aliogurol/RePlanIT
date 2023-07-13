@@ -6,7 +6,13 @@ class Responsive extends StatelessWidget {
   static const String loginScreen = '/login';
   static const String marketPlaceScreen = '/market_place';
   static const String dashBoardScreen = '/dash_board';
-  static const String landingScreen = '/landing';
+  static const String landingScreen = 'landing';
+  static const String laptopScreen = 'laptop';
+  static const String laptopComparingScreen = 'laptop_comparing';
+  static const String laptopComparingScreenValues = '/laptop_comparing_values';
+  static const String laptopComparingSavingsScreen = '/laptop_comparing_savings';
+  static const String laptopComparingGraphScreen = '/laptop_comparing_graph';
+  static const String positiveImpactReport = '/positive_impact_report';
 
   final Widget mobile;
   final Widget? tablet;

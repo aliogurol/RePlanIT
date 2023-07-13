@@ -1,83 +1,115 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_admin_dashboard/constants/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
-import 'package:responsive_admin_dashboard/controllers/controller.dart';
-import 'package:responsive_admin_dashboard/screens/components/dashboard_content.dart';
+import 'package:responsive_admin_dashboard/screens/components/toolbar.dart';
 
-import 'components/drawer_menu.dart';
-import 'package:provider/provider.dart';
-
-class LandingScreen extends StatelessWidget {
+class LandingScreen extends StatefulWidget {
   const LandingScreen({Key? key}) : super(key: key);
 
   @override
+  _LandingScreenState createState() => _LandingScreenState();
+}
+
+class _LandingScreenState extends State<LandingScreen> {
+  String _hoveredTitle = '';
+
+  @override
   Widget build(BuildContext context) {
+    final double _initialCardSize = 180.0;
+    double _currentCardSize = _initialCardSize;
+    final double _containerWidth = MediaQuery.of(context).size.width * 0.3;
+    final double _containerHeight = MediaQuery.of(context).size.height * 0.9;
     return Scaffold(
-      backgroundColor: bgColor,
-      drawer: DrawerMenu(),
-      body: Container(child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: GridView(children: [
-          InkWell(
-            onTap: (){
-              Navigator.pushNamed(context, Responsive.dashBoardScreen);
-            } ,
-            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.blue),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      appBar: AppBar(
+        title: Toolbar.build(
+            displayButtons: false,
+            rightText: Text(''),
+            hoverOn: 0,
+            routes: [
+              {'text': 'landing', 'route': Responsive.landingScreen}
+            ],
+            currentRoute: Responsive.landingScreen),
+        toolbarHeight: 100,
+        backgroundColor: Colors.white,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(80),
+        child: Center(
+          child: Container(
+            width: _containerWidth,
+            height: _containerHeight,
+            child: GridView.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: 30,
+              crossAxisSpacing: 30,
               children: [
-                Icon(Icons.laptop,size: 50, color: Colors.white,),
-                Text("Laptops", style: TextStyle(color: Colors.white, fontSize: 30),)
-              ]),
+                _buildCard("Laptops", Icons.laptop, context,
+                    Responsive.laptopScreen, Colors.grey),
+                _buildCard("Servers", Icons.network_wifi, context,
+                    Responsive.landingScreen, Colors.grey),
+                _buildCard("Switches", Icons.router, context,
+                    Responsive.landingScreen, Colors.grey),
+                _buildCard(
+                    "Routers", Icons.router, context, Responsive.landingScreen, Colors.grey),
+              ],
             ),
           ),
-          
-          InkWell(
-            onTap: (){
-              Navigator.pushNamed(context, Responsive.dashBoardScreen);
-            } ,
-            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.green),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.network_wifi,size: 50, color: Colors.white,),
-                Text("Servers", style: TextStyle(color: Colors.white, fontSize: 30),)
-              ]),
-            ),
+        ),
+      ),
+    );
+  }
+InkWell _buildCard(String title, IconData icon, BuildContext context, String route, Color color) {
+  bool isHovered = _hoveredTitle == title;
+
+  return InkWell(
+    onTap: () {
+      Navigator.pushNamed(context, route);
+    },
+    onHover: (isHovering) {
+      setState(() {
+        if (isHovering) {
+          _hoveredTitle = title;
+        } else {
+          _hoveredTitle = '';
+        }
+      });
+    },
+    child: Container(
+      height: 200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: color,
+        boxShadow: isHovered
+            ? [
+                BoxShadow(
+                  color: color.withOpacity(0.6),
+                  blurRadius: 12,
+                  spreadRadius: 4,
+                ),
+              ]
+            : null,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: isHovered ? 60 : 50,
+            color: Colors.white,
           ),
-          
-          InkWell(
-            onTap: (){
-              Navigator.pushNamed(context, Responsive.dashBoardScreen);
-            } ,
-            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.red),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.router,size: 50, color: Colors.white,),
-                Text("Switches", style: TextStyle(color: Colors.white, fontSize: 30),)
-              ]),
-            ),
-          ),
-          
-          InkWell(
-            onTap: (){
-              Navigator.pushNamed(context, Responsive.dashBoardScreen);
-            } ,
-            child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.yellow),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.router,size: 50, color: Colors.white,),
-                Text("Routers", style: TextStyle(color: Colors.white, fontSize: 30),)
-              ]),
+          SizedBox(height: 10),
+          Text(
+            title,
+            style: GoogleFonts.openSans(
+              color: Colors.white,
+              fontSize: isHovered ? 28 : 25,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ],
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
-        ),
-      ),)
+      ),
+    ),
+  );
+}
 
-    );
-  }
 }
