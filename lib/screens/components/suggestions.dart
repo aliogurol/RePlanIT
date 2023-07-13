@@ -1,5 +1,4 @@
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
-import 'package:responsive_admin_dashboard/screens/laptop_comparing_screen.dart';
 
 class SuggestionProvider {
   static String getSuggestion(int score) {

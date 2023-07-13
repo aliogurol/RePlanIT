@@ -14,7 +14,7 @@ class _LaptopSettingsState extends State<LaptopSettings> {
   bool visible_for_size = false;
   bool visible_for_specification = false;
 
-  String? selectedValue = null;
+  String? selectedValue;
   final _dropdownFormKey = GlobalKey<FormState>();
   
   @override

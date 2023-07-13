@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_header.dart';
 import 'package:responsive_admin_dashboard/screens/components/buttons/impact_button.dart';
 import 'package:responsive_admin_dashboard/screens/components/formula.dart';
 import 'package:responsive_admin_dashboard/screens/components/leafProvider.dart';
 import 'package:responsive_admin_dashboard/screens/components/selected_laptops_to_compare.dart';
-import 'package:responsive_admin_dashboard/screens/laptop_comparing_graph_screen.dart';
-import 'package:responsive_admin_dashboard/screens/laptop_comparing_savings_screen.dart';
 
 class DataTableAlternativeLaptops {
 static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops, arguments) {

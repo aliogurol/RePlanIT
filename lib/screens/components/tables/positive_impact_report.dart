@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_admin_dashboard/data/laptops.dart';
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_header.dart';

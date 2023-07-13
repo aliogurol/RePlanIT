@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
-import 'package:responsive_admin_dashboard/screens/components/laptop_selection.dart';
 
 class LaptopLongList extends StatefulWidget {
   const LaptopLongList({Key? key}) : super(key: key);

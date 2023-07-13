@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/data/laptops.dart';
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
-import 'package:responsive_admin_dashboard/screens/components/buttons/impact_button.dart';
 import 'package:responsive_admin_dashboard/screens/components/base_line.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_border.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_header.dart';

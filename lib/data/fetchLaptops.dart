@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 import 'package:http/http.dart' as http;
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
 import 'package:responsive_admin_dashboard/screens/components/standartized_laptop_data.dart';

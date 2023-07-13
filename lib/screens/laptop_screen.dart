@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_border.dart';
 import 'package:responsive_admin_dashboard/screens/components/laptop_long_list_copy.dart';
-import 'package:responsive_admin_dashboard/screens/components/laptop_settings_copy.dart';
 import 'package:responsive_admin_dashboard/screens/components/new_employee.dart';
 import 'package:responsive_admin_dashboard/screens/components/toolbar.dart';
 

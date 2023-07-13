@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
-import 'package:responsive_admin_dashboard/controllers/controller.dart';
 import 'package:responsive_admin_dashboard/screens/components/dashboard_content.dart';
 
 import 'components/drawer_menu.dart';
-import 'package:provider/provider.dart';
 
 class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({Key? key}) : super(key: key);

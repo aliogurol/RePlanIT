@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_admin_dashboard/data/laptops.dart';
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
 import 'package:responsive_admin_dashboard/screens/components/buttons/order_button.dart';
