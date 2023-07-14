@@ -64,7 +64,7 @@ class DataTableSavings {
   
   static getRowsFor(laptop,arguments) {
     int quantitiy = 1;
-    if(arguments.first.runtimeType == String && arguments.first.contains('All Items')){
+    if(arguments.first is int && arguments.first == 5){
       quantitiy = arguments[1].length;
     }
     const greenTextStyle = TextStyle(color: Colors.green);

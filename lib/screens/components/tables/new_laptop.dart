@@ -120,7 +120,6 @@ class DataTableNewLaptop {
                 ],
                 rows:
                   evaluateRows(laptop,arguments)
-                
               ),
             ],
           ),
@@ -130,19 +129,22 @@ class DataTableNewLaptop {
   }
   
   static getQuantitiyFor(laptops) {
-    final extractedText = extractTextFromWidget(laptops[0].toString());
-    if(laptops[0].runtimeType == String){
-      if(extractedText == 'All Items'){
+    print(laptops);
+    if(laptops[0] == 5){
         return laptops[1].length;
-      }
-    }   
+    }
+    // else if(laptops[0] == 4){
+    //   return 1;
+    // }   
     return 1;
   }
 
   static String getBrandAndModel(arguments) {
-    if(arguments.first.runtimeType == LaptopData){
+    if(arguments.first is LaptopData){
+      print('really works?');
       return arguments.first.brand + ' ' + arguments.first.model;
     }
+    print('as expected');
     return arguments[1].first.brand + ' ' + arguments[1].first.model;
   }
 
@@ -295,14 +297,22 @@ class DataTableNewLaptop {
   }
   
   static evaluateRows(laptop,arguments) {
-    if(arguments.first.runtimeType == LaptopData){
+    if(arguments.first is LaptopData){
      return getRowsForValues(laptop,arguments);
     }else{
-      if(arguments.first.contains('Values') || ( (arguments.first.contains('All Items') || arguments.first.contains('One Item')) && arguments[2] == 'laptop_comparing')){
-        return getRowsForValues(laptop, arguments);
+      if(arguments.length == 2){
+        if(arguments[0] == 2 || arguments[0] == 1)
+          return getRowsForValues(laptop, arguments);
+        else{
+          return getRowsForSavings(laptop, arguments);
+        }
       }
-      else if(arguments.first.contains('Savings') || arguments.first.contains('All Items') ||arguments.first.contains('One Item')){
-        return getRowsForSavings(laptop, arguments);
+      else if(arguments.length == 3){
+        if(arguments[2] == 'laptop_comparing')
+          return getRowsForValues(laptop, arguments);
+        else{
+          return getRowsForSavings(laptop, arguments);
+        }
       }
     }
 

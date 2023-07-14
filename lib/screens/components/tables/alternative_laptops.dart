@@ -122,12 +122,13 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
       }
 
   static getQuantitiyFor(laptops) {
-    final extractedText = extractTextFromWidget(laptops[0].toString());
-    if(laptops[0].runtimeType == String){
-      if(extractedText == 'All Items'){
+    print(laptops);
+    if(laptops[0] == 5){
         return laptops[1].length;
-      }
-    }    
+    }
+    // else if(laptops[0] == 4){
+    //   return 1;
+    // }   
     return 1;
   }
 

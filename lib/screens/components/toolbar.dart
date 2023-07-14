@@ -207,14 +207,14 @@ final List<Map<String, dynamic>> buttons = [
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => LaptopComparingScreen(arguments:[buttonDefiniton(index).toString(),laptops]),
+          builder: (context) => LaptopComparingScreen(arguments:[index,laptops]),
         ),
       );
     } else if (index == 3){
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => LaptopComparingSavingsScreen(arguments:[buttonDefiniton(index).toString(),laptops]),
+          builder: (context) => LaptopComparingSavingsScreen(arguments:[index,laptops]),
         ),
       );
     } else if (index == 0){
@@ -230,16 +230,16 @@ final List<Map<String, dynamic>> buttons = [
         MaterialPageRoute(
           builder: (context) => widget.currentRoute == Responsive.laptopComparingScreen
             ? 
-             LaptopComparingScreen(arguments:[buttonDefiniton(index).toString(), laptops, widget.currentRoute])
+             LaptopComparingScreen(arguments:[index, laptops, widget.currentRoute])
             : 
-             LaptopComparingSavingsScreen(arguments:[buttonDefiniton(index).toString(), laptops, widget.currentRoute])
+             LaptopComparingSavingsScreen(arguments:[index, laptops, widget.currentRoute])
         ),
       );
     } else if (index == 1){
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => LaptopComparingScreen(arguments:[buttonDefiniton(index).toString(), laptops]),
+          builder: (context) => LaptopComparingScreen(arguments:[index, laptops]),
         ),
       );
     } else if (index == 4){
@@ -248,9 +248,9 @@ final List<Map<String, dynamic>> buttons = [
         MaterialPageRoute(
           builder: (context) => widget.currentRoute == Responsive.laptopComparingScreen
             ? 
-             LaptopComparingScreen(arguments:[buttonDefiniton(index).toString(), laptops, widget.currentRoute])
+             LaptopComparingScreen(arguments:[index, laptops, widget.currentRoute])
             : 
-             LaptopComparingSavingsScreen(arguments:[buttonDefiniton(index).toString(), laptops, widget.currentRoute])
+             LaptopComparingSavingsScreen(arguments:[index, laptops, widget.currentRoute])
         ),
       );
     }
