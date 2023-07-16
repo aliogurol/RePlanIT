@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/data/fetchLaptops.dart';
+import 'package:responsive_admin_dashboard/data/laptops.dart';
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_border.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_header.dart';
@@ -46,8 +47,18 @@ class _LaptopComparingScreenState extends State<LaptopComparingScreen> {
   );
 
   void handleSelectionChanged(List<LaptopData> selectedLaptops) {
-          setState(() {
+      setState(() {
         this.selectedLaptops = selectedLaptops.toList();
+    
+
+        if(selectedLaptops.isNotEmpty){
+          if(!listFromLaptopScreen.contains(selectedLaptops.last)){
+            listFromLaptopScreen.add(selectedLaptops.last);
+          }
+          else{
+            listFromLaptopScreen.remove(selectedLaptops.last);
+          }
+        }
       });
     /*Future.wait(selectedLaptops.map((laptop) => getSelectedLaptopInfoData(laptop.id)))
         .then((laptopDataList) {
@@ -108,10 +119,10 @@ loadContent() {
                     flex: 7,
                     child: Column(
                       children: [
-                        selectedLaptops.isEmpty 
+                        listFromLaptopScreen.isEmpty 
                           ? Container(width: 0, height: 0) 
                           : Expanded(
-                              child: DataTableAlternativeLaptops.createTable(context, selectedLaptops, widget.arguments),
+                              child: DataTableAlternativeLaptops.createTable(context, listFromLaptopScreen, widget.arguments),
                               flex: 1,
                             ),
                       ],
@@ -130,6 +141,15 @@ loadContent() {
 @override
 Widget build(BuildContext context) {
   argsFromLaptopScreen();
+  // if(listFromLaptopScreen.isNotEmpty){
+    // for(var henk in listFromLaptopScreen){
+    // if(laptopInfoData.contains(henk)){
+      // print(henk);
+      // DataTableAlternativeLaptops.createTable(context, listFromLaptopScreen, widget.arguments);
+      // break;
+    // }
+  // }
+// }
   return Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.white,

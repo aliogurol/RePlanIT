@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_admin_dashboard/data/laptops.dart';
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_header.dart';
 import 'package:responsive_admin_dashboard/screens/components/leafProvider.dart';
@@ -18,9 +19,9 @@ class _LaptopListViewState extends State<LaptopListView> {
   void handleCheckboxChange(bool? value, int index) {
     setState(() {
       if (value == true) {
-        selectedLaptops.add(widget.laptops![index]);
+        selectedLaptops.add(laptopInfoData[index]);
       } else {
-        selectedLaptops.remove(widget.laptops![index]);
+        selectedLaptops.remove(laptopInfoData[index]);
       }
       widget.onSelectionChanged(selectedLaptops); // Converting Set to List
     });
@@ -57,7 +58,7 @@ Widget buildLaptopListTile(LaptopData laptop, isSelected) {
             ),
             trailing: Checkbox(
               value: isSelected == null ? false : true,
-              onChanged: (value) => handleCheckboxChange(value, widget.laptops!.indexOf(laptop)),
+              onChanged: (value) => handleCheckboxChange(value, laptopInfoData.indexOf(laptop)),
             ),
           ),
         ),
@@ -76,7 +77,7 @@ Widget buildLaptopListTile(LaptopData laptop, isSelected) {
           SizedBox(height: 12),
           Expanded(
             child: ListView.separated(
-              itemCount: widget.laptops!.length,
+              itemCount: laptopInfoData.length,
               separatorBuilder: (context, index) => Divider(),
               itemBuilder: (context, index) {
 
@@ -84,13 +85,21 @@ Widget buildLaptopListTile(LaptopData laptop, isSelected) {
   // (selectedLaptops.toList().isEmpty || selectedLaptops.length <= index ? false : selectedLaptops.toList()[index].id);
               // final isSelected = selectedLaptops.contains(widget.laptops[index]);
               var isSelected;
-              for(var henk in selectedLaptops){
-                if(henk.id == widget.laptops![index].id){
+
+              for(var laptop in widget.laptops!){
+                if(laptop.id == laptopInfoData[index].id){
                  isSelected = true;
+                 selectedLaptops.add(laptop);
                   break;
                 }
               }
-              return buildLaptopListTile(widget.laptops![index], isSelected);
+              // for(var henk in selectedLaptops){
+              //   if(henk.id == laptopInfoData[index].id){
+              //    isSelected = true;
+              //     break;
+              //   }
+              // }
+              return buildLaptopListTile(laptopInfoData[index], isSelected);
               },
             ),
           ),
