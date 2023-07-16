@@ -118,7 +118,6 @@ void _filterLaptopsByBrand(String laptopBrand) {
 
 void _filterLaptopsByScreenSize(String secreenSize) {
   setState(() {
-    print(selectedBMY);
     filteredLaptops = filteredLaptops.isEmpty ? checkListItems : filteredLaptops
         .where((laptop) {
           return laptop.screenSize.contains(secreenSize) && laptop.brand == selectedBMY; // use the contains() method to check if the laptop id contains the text in the text field

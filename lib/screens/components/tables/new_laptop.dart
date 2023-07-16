@@ -129,7 +129,6 @@ class DataTableNewLaptop {
   }
   
   static getQuantitiyFor(laptops) {
-    print(laptops);
     if(laptops[0] == 5){
         return laptops[1].length;
     }
@@ -141,10 +140,8 @@ class DataTableNewLaptop {
 
   static String getBrandAndModel(arguments) {
     if(arguments.first is LaptopData){
-      print('really works?');
       return arguments.first.brand + ' ' + arguments.first.model;
     }
-    print('as expected');
     return arguments[1].first.brand + ' ' + arguments[1].first.model;
   }
 

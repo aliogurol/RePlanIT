@@ -15,7 +15,6 @@ import 'laptop_screen.dart';
 
 class MyRoutes {
   static Route<dynamic> generateRotes(RouteSettings setting){
-  print(setting.name);
     switch (setting.name) {
       // case Responsive.homeScreen:
       //   return MaterialPageRoute(builder: ((context) => HomePage()));

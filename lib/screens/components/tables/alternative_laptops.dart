@@ -122,7 +122,6 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
       }
 
   static getQuantitiyFor(laptops) {
-    print(laptops);
     if(laptops[0] == 5){
         return laptops[1].length;
     }
