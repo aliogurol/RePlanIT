@@ -49,16 +49,6 @@ class _LaptopComparingScreenState extends State<LaptopComparingScreen> {
   void handleSelectionChanged(List<LaptopData> selectedLaptops) {
       setState(() {
         this.selectedLaptops = selectedLaptops.toList();
-    
-
-        if(selectedLaptops.isNotEmpty){
-          if(!listFromLaptopScreen.contains(selectedLaptops.last)){
-            listFromLaptopScreen.add(selectedLaptops.last);
-          }
-          else{
-            listFromLaptopScreen.remove(selectedLaptops.last);
-          }
-        }
       });
     /*Future.wait(selectedLaptops.map((laptop) => getSelectedLaptopInfoData(laptop.id)))
         .then((laptopDataList) {
@@ -119,10 +109,13 @@ loadContent() {
                     flex: 7,
                     child: Column(
                       children: [
-                        listFromLaptopScreen.isEmpty 
-                          ? Container(width: 0, height: 0) 
-                          : Expanded(
+                        selectedLaptops.isEmpty 
+                          ? Expanded(
                               child: DataTableAlternativeLaptops.createTable(context, listFromLaptopScreen, widget.arguments),
+                              flex: 1,
+                            )
+                          : Expanded(
+                              child: DataTableAlternativeLaptops.createTable(context, selectedLaptops, widget.arguments),
                               flex: 1,
                             ),
                       ],

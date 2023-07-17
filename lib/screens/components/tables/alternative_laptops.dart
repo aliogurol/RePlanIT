@@ -19,7 +19,7 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
             itemCount: selectedLaptops.length,
             itemBuilder: (BuildContext context, int index) {
               LaptopData laptop = selectedLaptops[index];
-              if(laptop.status == 'New'){
+              if(laptop.status == 'New' && laptop.brand == 'HP'){
                 return Container();
               }
               return DataTable(

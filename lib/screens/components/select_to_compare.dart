@@ -86,19 +86,19 @@ Widget buildLaptopListTile(LaptopData laptop, isSelected) {
               // final isSelected = selectedLaptops.contains(widget.laptops[index]);
               var isSelected;
 
-              for(var laptop in widget.laptops!){
-                if(laptop.id == laptopInfoData[index].id){
+              for(var laptop in selectedLaptops) {
+                if (laptop.id == laptopInfoData[index].id) {
                  isSelected = true;
-                 selectedLaptops.add(laptop);
+                
                   break;
                 }
               }
-              // for(var henk in selectedLaptops){
-              //   if(henk.id == laptopInfoData[index].id){
-              //    isSelected = true;
-              //     break;
-              //   }
-              // }
+
+
+                if(selectedLaptops.isEmpty){
+                  isSelected = true;
+                  widget.laptops!.forEach((element) {selectedLaptops.add(element);});
+                }
               return buildLaptopListTile(laptopInfoData[index], isSelected);
               },
             ),
