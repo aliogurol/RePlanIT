@@ -111,11 +111,11 @@ loadContent() {
                       children: [
                         selectedLaptops.isEmpty 
                           ? Expanded(
-                              child: DataTableAlternativeLaptops.createTable(context, listFromLaptopScreen, widget.arguments),
+                              child: DataTableAlternativeLaptops.createTable(context, listFromLaptopScreen, widget.arguments,  ['laptop values', Responsive.laptopComparingScreen]),
                               flex: 1,
                             )
                           : Expanded(
-                              child: DataTableAlternativeLaptops.createTable(context, selectedLaptops, widget.arguments),
+                              child: DataTableAlternativeLaptops.createTable(context, selectedLaptops, widget.arguments, ['name''laptop values', Responsive.laptopComparingScreen]),
                               flex: 1,
                             ),
                       ],
@@ -163,7 +163,7 @@ Widget build(BuildContext context) {
         routes:[
           {'text':Responsive.landingScreen, 'route':Responsive.landingScreen},
           {'text':Responsive.laptopScreen, 'route':Responsive.laptopScreen},
-          {'text':'laptop comparing ', 'route':Responsive.laptopComparingScreen}
+          {'text':'laptop values ', 'route':Responsive.laptopComparingScreen}
         ],
         currentRoute: Responsive.laptopComparingScreen
       ),

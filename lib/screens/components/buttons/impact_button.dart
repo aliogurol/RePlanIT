@@ -5,7 +5,8 @@ import 'package:responsive_admin_dashboard/screens/positive_impact_report_copy.d
 class ImpactOfChoiceButton extends StatelessWidget {
   final LaptopData laptop;
   final int quantitiy;
-  ImpactOfChoiceButton({required this.laptop, required this.quantitiy});
+  final List? previousPage;
+  ImpactOfChoiceButton({required this.laptop, required this.quantitiy, this.previousPage});
   @override
   Widget build(BuildContext context) {
 
@@ -16,7 +17,7 @@ class ImpactOfChoiceButton extends StatelessWidget {
         Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PositiveImpactReport(laptop: laptop, quantitiy: quantitiy,),
+                builder: (context) => PositiveImpactReport(laptop: laptop, quantitiy: quantitiy, previousPage: previousPage),
               ),
             );
       },

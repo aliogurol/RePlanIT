@@ -89,8 +89,8 @@ class _LaptopComparingSavingsScreenState extends State<LaptopComparingSavingsScr
               child: Column(
                 children: [
                   selectedLaptops.isNotEmpty
-                      ? DataTableSavings.createTable(context, selectedLaptops,widget.arguments)
-                      : DataTableSavings.createTable(context, widget.arguments[1],widget.arguments),
+                      ? DataTableSavings.createTable(context, selectedLaptops,widget.arguments,['laptop savings', Responsive.laptopComparingScreen])
+                      : DataTableSavings.createTable(context, widget.arguments[1],widget.arguments, ['laptop savings', Responsive.laptopComparingScreen]),
                 ],
               ),
             ),
@@ -119,9 +119,13 @@ class _LaptopComparingSavingsScreenState extends State<LaptopComparingSavingsScr
           rightText: Text(''),
           hoverOn: 3, 
           laptops: selectedLaptops.isNotEmpty ? selectedLaptops : widget.arguments[1],  
-          routes:[{'text':Responsive.laptopComparingSavingsScreen, 'route':Responsive.laptopComparingSavingsScreen}],
+          routes:[
+            {'text':Responsive.landingScreen, 'route':Responsive.landingScreen},
+            {'text':Responsive.laptopScreen, 'route':Responsive.laptopScreen},
+            {'text':'laptop savings ', 'route':Responsive.laptopComparingSavingsScreen}
+          ],
           currentRoute: Responsive.laptopComparingSavingsScreen
-          ),
+        ),
       ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

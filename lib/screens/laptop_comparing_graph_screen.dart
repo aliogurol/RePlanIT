@@ -44,7 +44,7 @@ class _LaptopComparingGraphScreenState extends State<LaptopComparingGraphScreen>
           routes:[
             {'text':Responsive.landingScreen, 'route':Responsive.landingScreen},
             {'text':Responsive.laptopScreen, 'route':Responsive.laptopScreen},
-            {'text':'laptop comparing ', 'route':''}
+            {'text':'laptop values ', 'route':''}
           ],
           currentRoute: Responsive.laptopComparingGraphScreen,
         ),

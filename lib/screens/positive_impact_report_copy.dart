@@ -7,9 +7,11 @@ import 'package:responsive_admin_dashboard/screens/components/toolbar.dart';
 class PositiveImpactReport extends StatelessWidget {
   final LaptopData? laptop;
   final int? quantitiy;
-  PositiveImpactReport({this.laptop, this.quantitiy});
+  final List? previousPage;
+  PositiveImpactReport({this.laptop, this.quantitiy, this.previousPage});
   @override
   Widget build(BuildContext context) {
+    print(previousPage);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -30,7 +32,7 @@ class PositiveImpactReport extends StatelessWidget {
           routes:[
             {'text':Responsive.landingScreen, 'route':Responsive.landingScreen},
             {'text':Responsive.laptopScreen, 'route':Responsive.laptopScreen},
-            {'text':'laptop comparing ', 'route':Responsive.laptopComparingScreen},
+            {'text':previousPage![0], 'route':previousPage![1]},
             {'text':'impact report', 'route':Responsive.positiveImpactReport},
           ],
           currentRoute: Responsive.positiveImpactReport

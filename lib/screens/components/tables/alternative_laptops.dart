@@ -7,7 +7,7 @@ import 'package:responsive_admin_dashboard/screens/components/leafProvider.dart'
 import 'package:responsive_admin_dashboard/screens/components/selected_laptops_to_compare.dart';
 
 class DataTableAlternativeLaptops {
-static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops, arguments) {
+static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops, arguments, previousPage) {
     return Column(
       children: [
         BuildHeader.buildHeader('SELECTION OF ALTERNATIVES'),
@@ -52,7 +52,7 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
                   ),
                 ),
               ],
-              rows: getRowsFor(arguments,laptop)
+              rows: getRowsFor(arguments,laptop, previousPage)
               );
             },
           ),
@@ -61,7 +61,7 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
     );
   }
   
-  static getRowsFor(arguments,laptop) {
+  static getRowsFor(arguments,laptop, previousPage) {
     const greyTextStyle = TextStyle(color: Colors.grey);
         return [
           DataRow(cells: [
@@ -112,7 +112,7 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
           DataRow(cells: [
             DataCell(Row(
               children: [
-                ImpactOfChoiceButton(laptop:laptop, quantitiy:getQuantitiyFor(arguments)),
+                ImpactOfChoiceButton(laptop:laptop, quantitiy:getQuantitiyFor(arguments),previousPage: previousPage,),
                 SizedBox(width: 5,),
                 buildOrderButton(),
               ],
