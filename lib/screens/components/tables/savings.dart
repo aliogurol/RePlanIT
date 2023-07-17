@@ -122,7 +122,7 @@ class DataTableSavings {
           DataRow(cells: [
             DataCell(Row(
               children: [
-                ImpactOfChoiceButton(laptop: laptop, quantitiy:arguments.length),
+                ImpactOfChoiceButton(laptop:laptop, quantitiy:getQuantitiyFor(arguments)),
                 SizedBox(width: 5,),
                 buildOrderButton(),
               ],
@@ -130,4 +130,15 @@ class DataTableSavings {
           ]),
       ];
     }
+
+
+  static getQuantitiyFor(laptops) {
+    if(laptops[0] == 5){
+        return laptops[1].length;
+    }
+    // else if(laptops[0] == 4){
+    //   return 1;
+    // }   
+    return 1;
+  }
 }

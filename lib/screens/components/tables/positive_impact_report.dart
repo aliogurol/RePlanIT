@@ -10,7 +10,7 @@ import '../radial_painter.dart';
 
 class PositiveImpactReportTable {
   static Widget buildTable(BuildContext context, LaptopData laptop, int quantitiy) {
-    final LaptopData newLaptop = laptopInfoData.where((laptopInstance) => laptopInstance.status == 'New' && laptopInstance.brand == laptop.brand).first;
+    final LaptopData newLaptop = laptopInfoData.where((laptopInstance) => laptopInstance.status == 'New' && /*laptopInstance.brand == laptop.brand*/ laptopInstance.brand == 'HP').first;
     return SingleChildScrollView(
       child: Table(
         columnWidths: {
