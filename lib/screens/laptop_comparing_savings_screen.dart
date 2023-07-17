@@ -33,9 +33,8 @@ class _LaptopComparingSavingsScreenState extends State<LaptopComparingSavingsScr
   );
 
   void handleSelectionChanged(List<LaptopData> selectedLaptops) {
-              setState(() {
+      setState(() {
         this.selectedLaptops = selectedLaptops.toList();
-        selectedLaptops.add(widget.arguments[1]);
 
       });
     /*Future.wait(selectedLaptops.map((laptop) => getSelectedLaptopInfoData(laptop.id)))
@@ -89,8 +88,8 @@ class _LaptopComparingSavingsScreenState extends State<LaptopComparingSavingsScr
               flex: 5,
               child: Column(
                 children: [
-                  widget.arguments[1].isEmpty
-                      ? Container(width: 0, height: 0)
+                  selectedLaptops.isNotEmpty
+                      ? DataTableSavings.createTable(context, selectedLaptops,widget.arguments)
                       : DataTableSavings.createTable(context, widget.arguments[1],widget.arguments),
                 ],
               ),
@@ -119,7 +118,7 @@ class _LaptopComparingSavingsScreenState extends State<LaptopComparingSavingsScr
           displayButtons: true, 
           rightText: Text(''),
           hoverOn: 3, 
-          laptops: widget.arguments[1],  
+          laptops: selectedLaptops.isNotEmpty ? selectedLaptops : widget.arguments[1],  
           routes:[{'text':Responsive.laptopComparingSavingsScreen, 'route':Responsive.laptopComparingSavingsScreen}],
           currentRoute: Responsive.laptopComparingSavingsScreen
           ),

@@ -159,7 +159,7 @@ Widget build(BuildContext context) {
         displayButtons: true, 
         rightText: Text(''),
         hoverOn: 2, 
-        laptops: listFromLaptopScreen,  
+        laptops: selectedLaptops.isNotEmpty ? selectedLaptops : listFromLaptopScreen,  
         routes:[
           {'text':Responsive.landingScreen, 'route':Responsive.landingScreen},
           {'text':Responsive.laptopScreen, 'route':Responsive.laptopScreen},
