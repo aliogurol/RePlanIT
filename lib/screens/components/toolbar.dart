@@ -23,7 +23,7 @@ class Toolbar {
     required int hoverOn,
     List<LaptopData>? laptops,
     required List<Map<String, dynamic>> routes,
-    required String currentRoute,
+    required String currentRoute, int? clickedOn,
   }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -55,7 +55,7 @@ class Toolbar {
             displayButtons
                 ? Flexible(
                     flex: 4,
-                    child: ButtonRow(hoverOn: hoverOn, laptops: laptops ?? [], currentRoute: currentRoute,),
+                    child: ButtonRow(hoverOn: hoverOn, clickedOn: clickedOn, laptops: laptops ?? [], currentRoute: currentRoute,),
                   )
                 : Flexible(
                     flex: 4,
@@ -72,9 +72,10 @@ class Toolbar {
 class ButtonRow extends StatefulWidget {
 
     final int hoverOn;
+    final int? clickedOn;
     final List<LaptopData> laptops;
     final String currentRoute;
-    ButtonRow({required this.hoverOn, required this.laptops, required this.currentRoute});
+    ButtonRow({required this.hoverOn, this.clickedOn, required this.laptops, required this.currentRoute});
 
   @override
   _ButtonRowState createState() => _ButtonRowState(); 
@@ -122,8 +123,9 @@ final List<Map<String, dynamic>> buttons = [
                 color: 
                   _selectedIndex == index 
                   || _hoverIndex == index 
+                  || (widget.clickedOn != null ? (widget.clickedOn == 2 || widget.clickedOn == 3 || widget.clickedOn == 1 ? index == 4: index == widget.clickedOn) : index == 4 )
                   || index == widget.hoverOn 
-                  || ((widget.hoverOn == 2 || widget.hoverOn == 3) && (index==1 || index==4)) 
+                  || ((widget.hoverOn == 2 || widget.hoverOn == 3) && index==1) 
                   || ((widget.hoverOn == 0) && (index==2 || index==3)) 
                   ? Colors.blue 
                   : Colors.grey,
@@ -138,7 +140,8 @@ final List<Map<String, dynamic>> buttons = [
                 _selectedIndex == index 
                 || _hoverIndex == index 
                 || index == widget.hoverOn 
-                || ((widget.hoverOn == 2  || widget.hoverOn == 3) && (index==1 || index==4)) 
+                || (widget.clickedOn != null ? (widget.clickedOn == 2 || widget.clickedOn == 3 || widget.clickedOn == 1 ? index == 4: index == widget.clickedOn) : index == 4 )
+                || ((widget.hoverOn == 2  || widget.hoverOn == 3) && index==1) 
                 || ((widget.hoverOn == 0) && (index==2 || index==3)) 
 
                 ? Colors.blue 
@@ -250,7 +253,7 @@ final List<Map<String, dynamic>> buttons = [
             ? 
              LaptopComparingScreen(arguments:[index, laptops, widget.currentRoute])
             : 
-             LaptopComparingSavingsScreen(arguments:[index, laptops, widget.currentRoute])
+             LaptopComparingSavingsScreen(arguments:[index, laptops, widget.currentRoute,])
         ),
       );
     }

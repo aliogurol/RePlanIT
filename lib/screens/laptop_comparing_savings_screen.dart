@@ -118,6 +118,7 @@ class _LaptopComparingSavingsScreenState extends State<LaptopComparingSavingsScr
           displayButtons: true, 
           rightText: Text(''),
           hoverOn: 3, 
+          clickedOn: widget.arguments[0] is int ? widget.arguments[0] : null, 
           laptops: selectedLaptops.isNotEmpty ? selectedLaptops : widget.arguments[1],  
           routes:[
             {'text':Responsive.landingScreen, 'route':Responsive.landingScreen},

@@ -115,7 +115,7 @@ loadContent() {
                               flex: 1,
                             )
                           : Expanded(
-                              child: DataTableAlternativeLaptops.createTable(context, selectedLaptops, widget.arguments, ['name''laptop values', Responsive.laptopComparingScreen]),
+                              child: DataTableAlternativeLaptops.createTable(context, selectedLaptops, widget.arguments, ['laptop values', Responsive.laptopComparingScreen]),
                               flex: 1,
                             ),
                       ],
@@ -134,15 +134,6 @@ loadContent() {
 @override
 Widget build(BuildContext context) {
   argsFromLaptopScreen();
-  // if(listFromLaptopScreen.isNotEmpty){
-    // for(var henk in listFromLaptopScreen){
-    // if(laptopInfoData.contains(henk)){
-      // print(henk);
-      // DataTableAlternativeLaptops.createTable(context, listFromLaptopScreen, widget.arguments);
-      // break;
-    // }
-  // }
-// }
   return Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.white,
@@ -158,7 +149,8 @@ Widget build(BuildContext context) {
       title: Toolbar.build(
         displayButtons: true, 
         rightText: Text(''),
-        hoverOn: 2, 
+        hoverOn: 2,
+        clickedOn: widget.arguments[0] is int ? widget.arguments[0] : null, 
         laptops: selectedLaptops.isNotEmpty ? selectedLaptops : listFromLaptopScreen,  
         routes:[
           {'text':Responsive.landingScreen, 'route':Responsive.landingScreen},
