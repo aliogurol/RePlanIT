@@ -174,7 +174,7 @@ class DataTableNewLaptop {
         DataCell(Text(Formula.getCO2FootprintUsePerYear(laptop, getQuantitiyFor(arguments)).toString() + ' kg', style: greyTextStyle,)),
       ]),                   
       DataRow(cells: [
-        DataCell(Text('Circularity', style: greenTextStyle,)),
+        DataCell(Text('Circularity production & recycling', style: greenTextStyle,)),
         DataCell(Text(laptop.circularity)),
       ]),               
       DataRow(cells: [
@@ -243,7 +243,7 @@ class DataTableNewLaptop {
         DataCell(Text(Formula.getCO2FootprintUsePerYear(laptop, getQuantitiyFor(arguments)).toString() + ' kg')),
       ]),                   
       DataRow(cells: [
-        DataCell(Text('Circularity', style: greenTextStyle,)),
+        DataCell(Text('Circularity production & recycling', style: greenTextStyle,)),
         DataCell(Text(laptop.circularity)),
       ]),               
       DataRow(cells: [

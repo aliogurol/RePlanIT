@@ -226,7 +226,7 @@ class _LaptopComparingValuesScreenState extends State<LaptopComparingValuesScree
                     DataCell(Text((laptop.co2ProductionPerLifeTime~/laptop.expectedLifeTime).toString())),
                   ]),                   
                   DataRow(cells: [
-                    DataCell(Text('Circularity', style: greenTextStyle,)),
+                    DataCell(Text('Circularity production & recycling', style: greenTextStyle,)),
                     DataCell(Text(laptop.circularity)),
                   ]),               
                   DataRow(cells: [
