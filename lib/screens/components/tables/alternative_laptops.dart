@@ -83,7 +83,7 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
             DataCell(Text(Formula.getVirgenResource(laptop, getQuantitiyFor(arguments)).toStringAsFixed(1) + ' kg')),
           ]),          
           DataRow(cells: [
-            DataCell(Text(laptop.eWaste.toString() + ' kg')),
+            DataCell(Text(laptop.eWaste.toStringAsFixed(1) + ' kg')),
           ]), 
           DataRow(cells: [
             DataCell(Text('')),

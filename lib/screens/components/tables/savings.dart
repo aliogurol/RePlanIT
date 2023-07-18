@@ -90,10 +90,10 @@ class DataTableSavings {
             DataCell(Text(laptop.circularity,style:greenTextStyle ))
           ]),          
           DataRow(cells: [
-            DataCell(Text('-' + Formula.getVirgenResourceSavings(laptop,quantitiy,newLaptop).toString() + ' kg',style: greenTextStyle,)),
+            DataCell(Text('-' + Formula.getVirgenResourceSavings(laptop,quantitiy,newLaptop).toStringAsFixed(1) + ' kg',style: greenTextStyle,)),
           ]),             
           DataRow(cells: [
-            DataCell(Text('-' + Formula.getEwasteSavings(laptop, quantitiy, newLaptop).toString() + ' kg', style: greenTextStyle,)),
+            DataCell(Text('-' + Formula.getEwasteSavings(laptop, quantitiy, newLaptop).toStringAsFixed(1) + ' kg', style: greenTextStyle,)),
           ]), 
           DataRow(cells: [
             DataCell(Text('')),
