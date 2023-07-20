@@ -9,15 +9,24 @@ import 'package:responsive_admin_dashboard/screens/components/selected_laptops_t
 
 class DataTableSavings {
   static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops, arguments, previousPage) {
-    return Column(
-      children: [
-        BuildHeader.buildHeader('SELECTION OF ALTERNATIVES'),
-        SizedBox(
+  ScrollController _scrollController = ScrollController();
+  return Scrollbar(
+    radius: Radius.circular(5),
+    thickness: 15,
+    thumbVisibility: true,
+    controller: _scrollController,
+    child: Column(
+    children: [
+      BuildHeader.buildHeader('SELECTION OF ALTERNATIVES'),
+      SizedBox(
           height: MediaQuery.of(context).size.height,
           child: ListView.builder(
+            controller: _scrollController,
             padding: EdgeInsets.only(top: 40),
             scrollDirection: Axis.horizontal,
             itemCount: selectedLaptops.length,
+            physics: ScrollPhysics(parent: BouncingScrollPhysics()),
+
             itemBuilder: (BuildContext context, int index) {
               LaptopData laptop = selectedLaptops[index];
               if(laptop.status == 'New'&& laptop.brand == 'HP'){
@@ -59,6 +68,7 @@ class DataTableSavings {
           ),
         ),
       ],
+    )
     );
   }
   
@@ -75,7 +85,7 @@ class DataTableSavings {
             DataCell(Text('')),
           ]),                           
           DataRow(cells: [
-              DataCell(Text(laptop.status == 'extend support 2 years' ? 'savings first year' : (laptop.status == 'refurbished' ? 'savings first year' : 'savings first year') ))
+              DataCell(Text(laptop.status == 'extend lifetime 2 years' ? 'savings first year' : (laptop.status == 'refurbished' ? 'savings first year' : 'savings first year') ))
           ]),               
           DataRow(cells: [
             DataCell(Text('-' + Formula.getCO2FootprintTotalImpactSavings(laptop, quantitiy,newLaptop).toString() +' kg', style: greenTextStyle,)),
@@ -115,10 +125,7 @@ class DataTableSavings {
           ]),  
           DataRow(cells: [
             DataCell(Text('')),
-          ]),  
-          DataRow(cells: [
-            DataCell(Text('')),
-          ]),                  
+          ]),                
           DataRow(cells: [
             DataCell(Row(
               children: [

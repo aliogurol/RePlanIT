@@ -123,10 +123,10 @@ final List<Map<String, dynamic>> buttons = [
                 color: 
                   _selectedIndex == index 
                   || _hoverIndex == index 
-                  || (widget.clickedOn != null ? (widget.clickedOn == 2 || widget.clickedOn == 3 || widget.clickedOn == 1 ? index == 4: index == widget.clickedOn) : index == 4 )
+                  || (widget.clickedOn != null ? (widget.clickedOn == 0 || widget.clickedOn == 2 || widget.clickedOn == 3 || widget.clickedOn == 1 ? index == 4: index == widget.clickedOn) : index == 4 )
                   || index == widget.hoverOn 
                   || ((widget.hoverOn == 2 || widget.hoverOn == 3) && index==1) 
-                  || ((widget.hoverOn == 0) && (index==2 || index==3)) 
+                  || ((widget.hoverOn == 0) && (index==2 || index==3 )) 
                   ? Colors.blue 
                   : Colors.grey,
                 width: 2,
@@ -140,9 +140,9 @@ final List<Map<String, dynamic>> buttons = [
                 _selectedIndex == index 
                 || _hoverIndex == index 
                 || index == widget.hoverOn 
-                || (widget.clickedOn != null ? (widget.clickedOn == 2 || widget.clickedOn == 3 || widget.clickedOn == 1 ? index == 4: index == widget.clickedOn) : index == 4 )
+                || (widget.clickedOn != null ? (widget.clickedOn == 0 || widget.clickedOn == 2 || widget.clickedOn == 3 || widget.clickedOn == 1 ? index == 4: index == widget.clickedOn) : index == 4 )
                 || ((widget.hoverOn == 2  || widget.hoverOn == 3) && index==1) 
-                || ((widget.hoverOn == 0) && (index==2 || index==3)) 
+                || ((widget.hoverOn == 0) && (index==2 || index==3 )) 
 
                 ? Colors.blue 
                 : buttons[index]['color'],
@@ -224,7 +224,7 @@ final List<Map<String, dynamic>> buttons = [
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => LaptopComparingGraphScreen(laptops:laptops),
+          builder: (context) => LaptopComparingGraphScreen(arguments:[index,laptops]),
         ),
       );
       } else if (index == 5){
@@ -235,7 +235,10 @@ final List<Map<String, dynamic>> buttons = [
             ? 
              LaptopComparingScreen(arguments:[index, laptops, widget.currentRoute])
             : 
-             LaptopComparingSavingsScreen(arguments:[index, laptops, widget.currentRoute])
+            (widget.currentRoute == Responsive.laptopComparingGraphScreen 
+              ? LaptopComparingGraphScreen(arguments:[index, laptops, widget.currentRoute])
+              : LaptopComparingSavingsScreen(arguments:[index, laptops, widget.currentRoute])
+            )
         ),
       );
     } else if (index == 1){
@@ -253,7 +256,10 @@ final List<Map<String, dynamic>> buttons = [
             ? 
              LaptopComparingScreen(arguments:[index, laptops, widget.currentRoute])
             : 
-             LaptopComparingSavingsScreen(arguments:[index, laptops, widget.currentRoute,])
+            (widget.currentRoute == Responsive.laptopComparingGraphScreen 
+              ? LaptopComparingGraphScreen(arguments:[index, laptops, widget.currentRoute])
+              : LaptopComparingSavingsScreen(arguments:[index, laptops, widget.currentRoute])
+            )
         ),
       );
     }

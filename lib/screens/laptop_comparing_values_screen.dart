@@ -322,7 +322,7 @@ class _LaptopComparingValuesScreenState extends State<LaptopComparingValuesScree
           ],
           rows: [
             DataRow(cells: [
-             DataCell(Text(laptop.status == 'extend support 2 years' ? 'impact 2 years' : (laptop.status == 'refurbished' ? 'impact 4 years' : 'impact 1 year') ))
+             DataCell(Text(laptop.status == 'extend lifetime 2 years' ? 'impact 2 years' : (laptop.status == 'refurbished' ? 'impact 4 years' : 'impact 1 year') ))
             ]),               
             DataRow(cells: [
               DataCell(Text('')),

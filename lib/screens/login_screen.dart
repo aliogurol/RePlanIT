@@ -16,6 +16,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
   String _errorMessage = '';
 
+  @override
+  void initState() {
+    super.initState();
+    _emailController.text = "test@test.com"; // set the default username
+    _passwordController.text = "test123456"; // set the default password
+  }
+
   Future<void> _login() async {
     setState(() {
       _errorMessage = '';

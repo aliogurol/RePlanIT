@@ -22,9 +22,9 @@ class SuggestionProvider {
       score = 0;
     } else if (laptop.status == 'refurbished' || laptop.status == 'repaired') {
       score += 40;
-    } else if (laptop.status == 'extend support 1 year') {
+    } else if (laptop.status == 'extend lifetime 1 year') {
       score += 50;
-    } else if (laptop.status == 'extend support 2 years') {
+    } else if (laptop.status == 'extend lifetime 2 years') {
       score += 70;
     } else {
       score += 10;

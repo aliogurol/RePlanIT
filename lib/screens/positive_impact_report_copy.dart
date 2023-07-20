@@ -11,7 +11,6 @@ class PositiveImpactReport extends StatelessWidget {
   PositiveImpactReport({this.laptop, this.quantitiy, this.previousPage});
   @override
   Widget build(BuildContext context) {
-    print(previousPage);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

@@ -16,7 +16,7 @@ class LeafIconProvider {
             Row(children: [Icon(FontAwesomeIcons.leaf, color: Colors.green, size:15)]),
           ],
         );
-    } else if (laptopStatus == 'extend support 1 year') {
+    } else if (laptopStatus == 'extend lifetime 1 year') {
       return
         Row(
           children: [

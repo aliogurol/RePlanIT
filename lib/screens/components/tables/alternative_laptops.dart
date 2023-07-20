@@ -8,56 +8,65 @@ import 'package:responsive_admin_dashboard/screens/components/selected_laptops_t
 
 class DataTableAlternativeLaptops {
 static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops, arguments, previousPage) {
-    return Column(
-      children: [
-        BuildHeader.buildHeader('SELECTION OF ALTERNATIVES'),
-        SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: ListView.builder(
-            padding: EdgeInsets.only(top: 40),
-            scrollDirection: Axis.horizontal,
-            itemCount: selectedLaptops.length,
-            itemBuilder: (BuildContext context, int index) {
-              LaptopData laptop = selectedLaptops[index];
-              if(laptop.status == 'New' && laptop.brand == 'HP'){
-                return Container();
-              }
-              return DataTable(
-              headingRowHeight: 215,
-              dataRowHeight: 30,
-              columns: [
-                DataColumn(
-                  label: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(laptop.status),
-                      Container(
-                        height: 40,
-                        width: 200,
-                        child: Text(
-                          getSuggestion(laptop),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontSize: 10),
-                        ),
+  ScrollController _scrollController = ScrollController();
+  return Scrollbar(
+    radius: Radius.circular(5),
+    thickness: 15,
+    thumbVisibility: true,
+    controller: _scrollController,
+    child: Column(
+    children: [
+      BuildHeader.buildHeader('SELECTION OF ALTERNATIVES'),
+      SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        controller: _scrollController,
+        padding: EdgeInsets.only(top: 40),
+        physics: ScrollPhysics(parent: BouncingScrollPhysics()),
+          itemCount: selectedLaptops.length,
+          itemBuilder: (BuildContext context, int index) {
+            LaptopData laptop = selectedLaptops[index];
+            if(laptop.status == 'New' && laptop.brand == 'HP'){
+              return Container();
+            }
+            return DataTable(
+            headingRowHeight: 215,
+            dataRowHeight: 30,
+            columns: [
+              DataColumn(
+                label: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(laptop.status),
+                    Container(
+                      height: 40,
+                      width: 200,
+                      child: Text(
+                        getSuggestion(laptop),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 10),
                       ),
-                      SizedBox(
-                        width: 100,
-                        child: Image.asset('assets/images/laptopSampleImgae.png'),
-                      ),
-                      Text(laptop.brand + ' ' + laptop.model,style: TextStyle(fontSize: 10,),),
-                      Text(laptop.screenSize,style: TextStyle(fontSize: 10,),),
-                      LeafIconProvider.getLeafIcons(laptop.status)
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: Image.asset('assets/images/laptopSampleImgae.png'),
+                    ),
+                    Text(laptop.brand + ' ' + laptop.model,style: TextStyle(fontSize: 10,),),
+                    Text(laptop.screenSize,style: TextStyle(fontSize: 10,),),
+                    LeafIconProvider.getLeafIcons(laptop.status)
+                  ],
                 ),
-              ],
-              rows: getRowsFor(arguments,laptop, previousPage)
-              );
-            },
-          ),
+              ),
+            ],
+            rows: getRowsFor(arguments,laptop, previousPage)
+            );
+          },
         ),
-      ],
+      ),
+    ],
+    )
     );
   }
   
