@@ -89,8 +89,8 @@ class _LaptopComparingSavingsScreenState extends State<LaptopComparingSavingsScr
               child: Column(
                 children: [
                   selectedLaptops.isNotEmpty
-                      ? DataTableSavings.createTable(context, selectedLaptops,widget.arguments,['laptop savings', Responsive.laptopComparingScreen])
-                      : DataTableSavings.createTable(context, widget.arguments[1],widget.arguments, ['laptop savings', Responsive.laptopComparingScreen]),
+                  ? DataTableSavings(arguments: widget.arguments, selectedLaptops: selectedLaptops, previousPage: ['laptop savings', Responsive.laptopComparingScreen])
+                  : DataTableSavings(arguments: widget.arguments, selectedLaptops: widget.arguments[1], previousPage: ['laptop savings', Responsive.laptopComparingScreen])
                 ],
               ),
             ),
