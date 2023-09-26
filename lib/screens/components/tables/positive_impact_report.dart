@@ -8,9 +8,25 @@ import 'package:responsive_admin_dashboard/screens/components/selected_laptops_t
 import '../../../constants/constants.dart';
 import '../radial_painter.dart';
 
-class PositiveImpactReportTable {
-  static Widget buildTable(BuildContext context, LaptopData laptop, int quantitiy) {
-    final LaptopData newLaptop = laptopInfoData.where((laptopInstance) => laptopInstance.status == 'New' && /*laptopInstance.brand == laptop.brand*/ laptopInstance.brand == 'HP').first;
+class PositiveImpactReportTable extends StatefulWidget {
+  final LaptopData laptop;
+  final int quantity;
+
+  PositiveImpactReportTable({required this.laptop, required this.quantity});
+
+  @override
+  _PositiveImpactReportTableState createState() =>
+      _PositiveImpactReportTableState();
+}
+
+class _PositiveImpactReportTableState extends State<PositiveImpactReportTable> {
+   int selectedQuantity = 1;
+  final LaptopData newLaptop = laptopInfoData.firstWhere(
+    (laptopInstance) =>
+        laptopInstance.status == 'New' && laptopInstance.brand == 'HP',
+  );
+  Widget build(BuildContext context) {
+    final LaptopData newLaptop = laptopInfoData.where((laptopInstance) => laptopInstance.status == 'New' && /*laptopInstance.brand == widget.laptop.brand*/ laptopInstance.brand == 'HP').first;
     return SingleChildScrollView(
       child: Table(
         columnWidths: {
@@ -114,19 +130,19 @@ class PositiveImpactReportTable {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    laptop.status,
+                                    widget.laptop.status,
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
                                   ),
                                   Text(
-                                    getSuggestion(laptop),
+                                    getSuggestion(widget.laptop),
                                     style: TextStyle(
                                       fontSize: 10,
                                     ),
                                   ),
                                   Text(
-                                    laptop.brand + ' ' + laptop.model + ' ' + laptop.processor + ' ' + laptop.screenSize,
+                                    widget.laptop.brand + ' ' + widget.laptop.model + ' ' + widget.laptop.processor + ' ' + widget.laptop.screenSize,
                                     style: TextStyle(
                                       fontSize: 10,
                                     ),
@@ -169,21 +185,36 @@ class PositiveImpactReportTable {
                               color: Colors.green
                             ),
                           ),
-                          Container(
+                         Container(
                             margin: EdgeInsets.all(8),
                             decoration: BoxDecoration(color: Colors.grey[400]),
                             constraints: BoxConstraints(
                               maxHeight: 20,
-                              maxWidth: 30,
+                              maxWidth: 50,
                             ),
                             height: double.infinity,
                             width: double.infinity,
-                            child: Text(
-                              quantitiy.toString(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
+                            child: DropdownButton<int>(
+                              value: selectedQuantity,
+                              onChanged: (int? newValue) {
+                                setState(() {
+                                  print(newValue);
+                                  selectedQuantity = newValue ?? 1;
+                                });
+                              },
+                            items: List<DropdownMenuItem<int>>.generate(100, (int index) {
+                                final value = index + 1;
+                                return DropdownMenuItem<int>(
+                                  value: value,
+                                  child: Text(
+                                    value.toString(),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
                             ),
                           ),
                           Text(
@@ -211,7 +242,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  Formula.getCO2FootprintTotalImpact(newLaptop, quantitiy).toString() + ' kg CO2 eq.',
+                  Formula.getCO2FootprintTotalImpact(newLaptop, selectedQuantity).toString() + ' kg CO2 eq.',
                   textAlign:TextAlign.center,
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                 ),
@@ -220,7 +251,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  Formula.getCO2FootprintTotalImpact(laptop, quantitiy).toString() + ' kg CO2 eq.',
+                  Formula.getCO2FootprintTotalImpact(widget.laptop, selectedQuantity).toString() + ' kg CO2 eq.',
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                   textAlign:TextAlign.center,
                 ),
@@ -228,7 +259,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  Formula.getCO2FootprintTotalImpactSavings(laptop, quantitiy, newLaptop).toString() + ' kg CO2 eq.',
+                  Formula.getCO2FootprintTotalImpactSavings(widget.laptop, selectedQuantity, newLaptop).toString() + ' kg CO2 eq.',
                   textAlign:TextAlign.center,
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.green),
                 ),
@@ -273,7 +304,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                   '€ ' + Formula.getCO2FootprintCostTotalImpact(newLaptop, quantitiy).toString(),
+                   '€ ' + Formula.getCO2FootprintCostTotalImpact(newLaptop, selectedQuantity).toString(),
                   textAlign:TextAlign.center,
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                 ),
@@ -282,7 +313,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  '€ ' + Formula.getCO2FootprintCostTotalImpact(laptop, quantitiy).toString(),
+                  '€ ' + Formula.getCO2FootprintCostTotalImpact(widget.laptop, selectedQuantity).toString(),
                   textAlign:TextAlign.center,
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                 ),
@@ -290,7 +321,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  '€ ' + Formula.getCO2FootprintCostTotalImpactSavings(laptop,quantitiy,newLaptop).toString() + ', -',
+                  '€ ' + Formula.getCO2FootprintCostTotalImpactSavings(widget.laptop,selectedQuantity,newLaptop).toString() + ', -',
                   textAlign:TextAlign.center,
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.green),
                 ),
@@ -321,7 +352,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  Formula.getVirgenResource(newLaptop, quantitiy).round().toString() + ' kg',
+                  Formula.getVirgenResource(newLaptop, selectedQuantity).round().toString() + ' kg',
                   textAlign:TextAlign.center,
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                 ),
@@ -330,7 +361,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  Formula.getVirgenResource(laptop, quantitiy).round().toString() + ' kg',
+                  Formula.getVirgenResource(widget.laptop, selectedQuantity).round().toString() + ' kg',
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                   textAlign:TextAlign.center,
                 ),
@@ -338,7 +369,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  Formula.getVirgenResourceSavings(laptop, quantitiy, newLaptop).round().toString() + ' kg',
+                  Formula.getVirgenResourceSavings(widget.laptop, selectedQuantity, newLaptop).round().toString() + ' kg',
                   textAlign:TextAlign.center,
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.green),
                 ),
@@ -378,7 +409,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  Formula.getEwaste(newLaptop, quantitiy).round().toString() + ' kg',
+                  Formula.getEwaste(newLaptop, selectedQuantity).round().toString() + ' kg',
                   textAlign:TextAlign.center,
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                 ),
@@ -387,7 +418,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  Formula.getEwaste(laptop, quantitiy).round().toString() + ' kg',
+                  Formula.getEwaste(widget.laptop,selectedQuantity).round().toString() + ' kg',
                   textAlign:TextAlign.center,
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                 ),
@@ -395,7 +426,7 @@ class PositiveImpactReportTable {
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
                 child: Text(
-                  Formula.getEwasteSavings(laptop, quantitiy, newLaptop).round().toString() + ' kg',
+                  Formula.getEwasteSavings(widget.laptop, selectedQuantity, newLaptop).round().toString() + ' kg',
                   textAlign:TextAlign.center,
                   style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.green),
                 ),

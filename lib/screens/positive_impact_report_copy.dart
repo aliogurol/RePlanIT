@@ -37,7 +37,7 @@ class PositiveImpactReport extends StatelessWidget {
           currentRoute: Responsive.positiveImpactReport
         ),
       ),
-      body: PositiveImpactReportTable.buildTable(context,laptop!,quantitiy!),
+      body: PositiveImpactReportTable(laptop: laptop!, quantity:quantitiy!)
     );
   }
 }

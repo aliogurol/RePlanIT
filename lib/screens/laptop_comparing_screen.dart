@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/data/fetchLaptops.dart';
-import 'package:responsive_admin_dashboard/data/laptops.dart';
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_border.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_header.dart';
@@ -99,7 +98,7 @@ loadContent() {
                         children: [
                           BuildHeader.buildHeader('NEW'),
                           Expanded(
-                            child: DataTableNewLaptop.createTable(context, selectedLaptops, widget.arguments),
+                            child: DataTableNewLaptop(arguments: widget.arguments,),
                           ),
                         ],
                       ),
@@ -111,11 +110,11 @@ loadContent() {
                       children: [
                         selectedLaptops.isEmpty 
                           ? Expanded(
-                              child: DataTableAlternativeLaptops.createTable(context, listFromLaptopScreen, widget.arguments,  ['laptop values', Responsive.laptopComparingScreen]),
+                            child: DataTableAlternativeLaptops(arguments: widget.arguments, selectedLaptops: listFromLaptopScreen, previousPage: ['laptop values', Responsive.laptopComparingScreen],),
                               flex: 1,
                             )
                           : Expanded(
-                              child: DataTableAlternativeLaptops.createTable(context, selectedLaptops, widget.arguments, ['laptop values', Responsive.laptopComparingScreen]),
+                              child: DataTableAlternativeLaptops(arguments: widget.arguments, selectedLaptops: selectedLaptops, previousPage: ['laptop values', Responsive.laptopComparingScreen],),
                               flex: 1,
                             ),
                       ],

@@ -79,7 +79,7 @@ class _LaptopComparingSavingsScreenState extends State<LaptopComparingSavingsScr
                 child: Column(
                   children: [
                     BuildHeader.buildHeader('NEW'),
-                    DataTableNewLaptop.createTable(context, selectedLaptops,widget.arguments),
+                    DataTableNewLaptop(arguments: widget.arguments,),
                   ]
                 ),
               ),

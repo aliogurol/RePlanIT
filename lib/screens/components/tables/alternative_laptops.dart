@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_admin_dashboard/helpers/Text_field.dart';
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
 import 'package:responsive_admin_dashboard/screens/components/build_header.dart';
 import 'package:responsive_admin_dashboard/screens/components/buttons/impact_button.dart';
@@ -6,8 +7,22 @@ import 'package:responsive_admin_dashboard/screens/components/formula.dart';
 import 'package:responsive_admin_dashboard/screens/components/leafProvider.dart';
 import 'package:responsive_admin_dashboard/screens/components/selected_laptops_to_compare.dart';
 
-class DataTableAlternativeLaptops {
-static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops, arguments, previousPage) {
+class DataTableAlternativeLaptops extends StatefulWidget {
+  final dynamic arguments;
+  final List<LaptopData> selectedLaptops;
+  final previousPage;
+
+  const DataTableAlternativeLaptops({Key? key, this.arguments, required this.selectedLaptops,required this.previousPage}) : super(key: key);
+
+  @override
+  _DataTableAlternativeLaptopsState createState() => _DataTableAlternativeLaptopsState();
+}
+class _DataTableAlternativeLaptopsState extends State<DataTableAlternativeLaptops> {
+  int? quantity;
+  int truePurchaseCost = 0; 
+ 
+  @override
+  Widget build(BuildContext context) {
   ScrollController _scrollController = ScrollController();
   return Scrollbar(
     radius: Radius.circular(5),
@@ -24,9 +39,9 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
         controller: _scrollController,
         padding: EdgeInsets.only(top: 40),
         physics: ScrollPhysics(parent: BouncingScrollPhysics()),
-          itemCount: selectedLaptops.length,
+          itemCount:widget.selectedLaptops.length,
           itemBuilder: (BuildContext context, int index) {
-            LaptopData laptop = selectedLaptops[index];
+            LaptopData laptop = widget.selectedLaptops[index];
             if(laptop.status == 'New' && laptop.brand == 'HP'){
               return Container();
             }
@@ -60,7 +75,7 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
                 ),
               ),
             ],
-            rows: getRowsFor(arguments,laptop, previousPage)
+            rows: getRowsFor(widget.arguments,laptop,widget.previousPage)
             );
           },
         ),
@@ -70,7 +85,7 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
     );
   }
   
-  static getRowsFor(arguments,laptop, previousPage) {
+  getRowsFor(arguments,laptop, previousPage) {
     const greyTextStyle = TextStyle(color: Colors.grey);
         return [
           DataRow(cells: [
@@ -101,10 +116,45 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
             DataCell(Text('')),
           ]), 
           DataRow(cells: [
-            DataCell(Text('€ ' + Formula.getTruePurchaseCost(laptop, getQuantitiyFor(arguments)).toString())),
+          DataCell( Text('€ ' + (truePurchaseCost != 0 ? truePurchaseCost.toString() : Formula.getTruePurchaseCost(laptop, getQuantitiyFor(arguments)).toString()))),
           ]),
           DataRow(cells: [
-            DataCell(Text('€ ' + laptop.purchaseCost.toString(),style: greyTextStyle,)),
+            DataCell(
+              UserInput(
+                initialValue: (laptop.purchaseCost * getQuantitiyFor(arguments)).toString(),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(() {
+                    int salesPrice = int.tryParse(value) ?? 0;
+                    truePurchaseCost = calculateTruePurchaseCost(
+                      laptop,
+                      getQuantitiyFor(arguments),
+                      salesPrice,
+                      quantity ?? 0,
+                    );
+                  });
+                },
+              ),
+            )
+          ]),
+          DataRow(cells: [
+            DataCell(
+              UserInput(
+                initialValue: (laptop.purchaseCost * getQuantitiyFor(arguments)).toString(),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(() {
+                    int salesPrice = int.tryParse(value) ?? 0;
+                    truePurchaseCost = calculateTruePurchaseCost(
+                      laptop,
+                      getQuantitiyFor(arguments),
+                      salesPrice,
+                      quantity ?? 0,
+                    );
+                  });
+                },
+              ),
+            )
           ]),
           DataRow(cells: [
             DataCell(Text('€ '+ Formula.getCO2FootprintCostProduction(laptop, getQuantitiyFor(arguments)).toString(),style: greyTextStyle,)),
@@ -144,6 +194,18 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
     RegExp regExp = RegExp(r'"([^"]*)"');
     String extractedText = regExp.firstMatch(input)?.group(1) ?? "";
     return extractedText;
+  }
+
+  int calculateTruePurchaseCost(
+    LaptopData laptop,
+    int quantity,
+    int salesPrice,
+    int supportCosts,
+  ) {
+    int co2FootprintCost = Formula.getCO2FootprintCostProduction(laptop, quantity);
+    int co2FootprintCostLifeTime = Formula.getCO2FootprintCostUsePerYear(laptop, quantity);
+    int trueCosts = co2FootprintCost + supportCosts + salesPrice + co2FootprintCostLifeTime;
+    return trueCosts;
   }
     
 }
