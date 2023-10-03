@@ -100,7 +100,7 @@ class _DataTableSavingsState extends State<DataTableSavings> {
             DataCell(Text('')),
           ]),                           
           DataRow(cells: [
-              DataCell(Text(laptop.status == 'extend lifetime 2 years' ? 'savings first year' : (laptop.status == 'refurbished' ? 'savings first year' : 'savings first year') ))
+              DataCell(Text((laptop.status == 'refurbished' ? 'savings first year' : 'savings first year') ))
           ]),               
           DataRow(cells: [
             DataCell(Text('-' + Formula.getCO2FootprintTotalImpactSavings(laptop, quantitiy,newLaptop).toString() +' kg', style: greenTextStyle,)),
@@ -127,26 +127,14 @@ class _DataTableSavingsState extends State<DataTableSavings> {
             DataCell(Text('')),
           ]), 
           DataRow(cells: [
-          DataCell( Text('-€ ' + (truePurchaseCost != 0 ? truePurchaseCost.toString() : Formula.getTruePurchaseCostForSavings(laptop, quantitiy,newLaptop).toString()),style: greenTextStyle,)),
+          DataCell( Text('-€ ' + (truePurchaseCost != 0 
+            ? truePurchaseCost.toString() 
+            : (Formula.getTruePurchaseCostForSavings(laptop, quantitiy,newLaptop) + Formula.getCO2FootprintUsePerYearForSavings(laptop,quantitiy,newLaptop)).toString()),style: greenTextStyle,)),
 
           ]),
           DataRow(cells: [
             DataCell(
-              UserInput(
-                initialValue: Formula.getPurchaseCostForSavings(laptop,quantitiy,newLaptop).toString(),
-                keyboardType: TextInputType.number,
-                onChanged: (value) {
-                  setState(() {
-                    int salesPrice = int.tryParse(value) ?? 0;
-                    truePurchaseCost = calculateTruePurchaseCost(
-                      laptop,
-                      getQuantitiyFor(arguments),
-                      salesPrice,
-                      quantity ?? 0,
-                    );
-                  });
-                },
-              ),
+              Text('-€ ' + Formula.getPurchaseCostForSavings(laptop,quantitiy,newLaptop).toString(),style:greenTextStyle )
             )
           ]),
           DataRow(cells: [

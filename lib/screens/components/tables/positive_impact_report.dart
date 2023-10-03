@@ -519,6 +519,60 @@ class _PositiveImpactReportTableState extends State<PositiveImpactReportTable> {
               ),
             ],
           ),
+          TableRow(
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+            ),
+            children: [
+              TableCell(
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Text(
+                  '€ ' + ((
+                    Formula.getTruePurchaseCost(newLaptop, selectedQuantity,) + 
+                    Formula.getCO2FootprintCostUsePerYear(newLaptop, selectedQuantity) +
+                    Formula.getCO2FootprintCostProduction(widget.laptop, selectedQuantity)
+                    )/1000.0).toStringAsFixed(3),
+                  textAlign:TextAlign.center,
+                  style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(width: 20),
+              TableCell(
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child:Text(
+                  '€ ' + Formula.getCO2FootprintCostTotalImpact(widget.laptop, selectedQuantity).toString(),
+                  textAlign:TextAlign.center,
+                  style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                ),
+              ),
+             TableCell(
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Text(
+                  '€ ' + ((
+                    Formula.getTruePurchaseCost(newLaptop, selectedQuantity,) + 
+                    Formula.getCO2FootprintCostUsePerYear(newLaptop, selectedQuantity) +
+                    Formula.getCO2FootprintCostProduction(widget.laptop, selectedQuantity) -
+                    Formula.getCO2FootprintCostTotalImpact(widget.laptop, selectedQuantity)
+                    )/1000.0).toStringAsFixed(3) +
+                    ' True Costs (at purchase)',
+                  textAlign:TextAlign.center,
+                  style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.green),
+                ),
+              ),
+              TableCell(
+                verticalAlignment: TableCellVerticalAlignment.middle,
+                child: Container(
+                  margin: EdgeInsets.all(5),
+                  padding: EdgeInsets.all(5),
+                  height: 80,
+                  width: 80,
+                  child: Center(
+                    child: Icon(Icons.euro_symbol, color: Colors.green, size: 50),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ]
       ),
     );

@@ -116,7 +116,9 @@ class _DataTableAlternativeLaptopsState extends State<DataTableAlternativeLaptop
             DataCell(Text('')),
           ]), 
           DataRow(cells: [
-          DataCell( Text('€ ' + (truePurchaseCost != 0 ? truePurchaseCost.toString() : Formula.getTruePurchaseCost(laptop, getQuantitiyFor(arguments)).toString()))),
+          DataCell( Text('€ ' + (truePurchaseCost != 0 
+            ? truePurchaseCost.toString() 
+            : (Formula.getTruePurchaseCost(laptop, getQuantitiyFor(arguments)) + Formula.getCO2FootprintCostUsePerYear(laptop, getQuantitiyFor(arguments))).toString()))),
           ]),
           DataRow(cells: [
             DataCell(

@@ -122,7 +122,7 @@ class DataTableGraph {
                       ],
                     ),
                   ),
-                  DataColumn(label: Text('Solution for 4 years', style: TextStyle(fontSize: 12),)),
+                  DataColumn(label: Text('')),
                 ],
                 rows:
                   getRowsForSavings(laptop,arguments)
@@ -454,7 +454,7 @@ static Widget createTable(BuildContext context,List<LaptopData> selectedLaptops,
     const greyTextStyle = TextStyle(color: Colors.grey);
         return [
           DataRow(cells: [
-            DataCell(Text(laptop.status == 'extend lifetime 2 years' ? 'Solution for 2 years' : (laptop.status == 'refurbished' ? 'Solution for 4 years' : 'Solution for 1 year') ,style: TextStyle(fontSize: 12),))
+            DataCell(Text(''))
           ]),               
           DataRow(cells: [
             DataCell(Row(

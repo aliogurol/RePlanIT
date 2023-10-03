@@ -24,8 +24,6 @@ class SuggestionProvider {
       score += 40;
     } else if (laptop.status == 'extend lifetime 1 year') {
       score += 50;
-    } else if (laptop.status == 'extend lifetime 2 years') {
-      score += 70;
     } else {
       score += 10;
     }

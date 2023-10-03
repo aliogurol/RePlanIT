@@ -319,7 +319,9 @@ class _DataTableNewLaptopState extends State<DataTableNewLaptop> {
             ),
           ),
         ),
-        DataCell( Text('€ ' + (truePurchaseCost != 0 ? truePurchaseCost.toString() : Formula.getTruePurchaseCost(laptop, getQuantitiyFor(arguments)).toString()))),
+        DataCell( Text('€ ' + (truePurchaseCost != 0 
+          ? truePurchaseCost.toString() 
+          : (Formula.getTruePurchaseCost(laptop, getQuantitiyFor(arguments)) + Formula.getCO2FootprintCostUsePerYear(laptop, getQuantitiyFor(arguments)))).toString())),
       ]),
       DataRow(cells: [
         DataCell(
@@ -335,23 +337,7 @@ class _DataTableNewLaptopState extends State<DataTableNewLaptop> {
             )),
           ),
         ),
-        DataCell(
-           UserInput(
-            initialValue: (laptop.purchaseCost * getQuantitiyFor(arguments)).toString(),
-            keyboardType: TextInputType.number,
-            onChanged: (value) {
-              setState(() {
-                int salesPrice = int.tryParse(value) ?? 0;
-                truePurchaseCost = calculateTruePurchaseCost(
-                  laptop,
-                  getQuantitiyFor(arguments),
-                  salesPrice,
-                  quantity ?? 0,
-                );
-              });
-            },
-          ),
-        )
+        DataCell(Text('€ '+(laptop.purchaseCost * getQuantitiyFor(arguments) ).toString(),style: greyTextStyle,)),
       ]),
       DataRow(cells: [
         DataCell(
@@ -529,7 +515,9 @@ class _DataTableNewLaptopState extends State<DataTableNewLaptop> {
             ),
           ),
         ),
-        DataCell( Text('€ ' + (truePurchaseCost != 0 ? truePurchaseCost.toString() : Formula.getTruePurchaseCost(laptop, getQuantitiyFor(arguments)).toString()))),
+        DataCell( Text('€ ' + (truePurchaseCost != 0 
+          ? truePurchaseCost.toString() 
+          : (Formula.getTruePurchaseCost(laptop, getQuantitiyFor(arguments)) + Formula.getCO2FootprintCostUsePerYear(laptop, getQuantitiyFor(arguments)))).toString())),
       ]),
       DataRow(cells: [
         DataCell(
