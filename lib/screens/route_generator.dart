@@ -9,6 +9,10 @@ import 'package:responsive_admin_dashboard/screens/market_place_screen.dart';
 import 'package:responsive_admin_dashboard/screens/login_screen.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/screens/positive_impact_report_copy.dart';
+import 'package:responsive_admin_dashboard/screens/servers/individual_server/individual_server_info.dart';
+import 'package:responsive_admin_dashboard/screens/servers/main/servers_main.dart';
+import 'package:responsive_admin_dashboard/screens/servers/replacement/replacement_main.dart';
+import 'package:responsive_admin_dashboard/screens/servers/sustainability/sustainability_main.dart';
 
 import 'laptop_screen.dart';
 
@@ -48,10 +52,22 @@ class MyRoutes {
       case Responsive.positiveImpactReport:
         print('Navigated to reportScreen');
         return MaterialPageRoute(builder: ((context) => PositiveImpactReport()));
+      case Responsive.serversMain:
+        print('Navigated to serverMainPage');
+        return MaterialPageRoute(builder: ((context) => ServersMain()));
+      case Responsive.replacementImpact:
+        print('Navigated to ReplecamentMain');
+        return MaterialPageRoute(builder: ((context) => ReplecamentMain()),settings: setting);
+      case Responsive.sustainability:
+        print('Navigated to Sustainability');
+        return MaterialPageRoute(builder: ((context) => SustainabilityMain()),settings: setting);
+      case Responsive.individualServerInfo:
+        print('Navigated to Individual Server Info');
+        return MaterialPageRoute(builder: ((context) => IndividualServerInfo()),settings: setting);
       default:
     }
     return MaterialPageRoute(builder:(context) => Scaffold(
-      body: Text("Np route defined"),
+      body: Text("No route defined"),
     ),);
   }
 }

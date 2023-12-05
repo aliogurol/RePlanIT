@@ -59,12 +59,8 @@ class _LaptopComparingScreenState extends State<LaptopComparingScreen> {
 
   Future<LaptopData> getSelectedLaptopInfoData(id) async {
     var data = await fetchNewLaptop(id);
-    if (data != null) {
-      return data;
-    } else {
-      throw Exception('Error fetching data for laptop with ID $id');
+    return data;
     }
-  }
 
 loadContent() {
   return LayoutBuilder(

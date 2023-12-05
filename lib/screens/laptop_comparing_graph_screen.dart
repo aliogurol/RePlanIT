@@ -1,6 +1,4 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/data/fetchLaptops.dart';
 import 'package:responsive_admin_dashboard/models/laptop_info_model.dart';
@@ -8,9 +6,7 @@ import 'package:responsive_admin_dashboard/screens/components/build_border.dart'
 import 'package:responsive_admin_dashboard/screens/components/build_header.dart';
 import 'package:responsive_admin_dashboard/screens/components/select_to_compare.dart';
 import 'package:responsive_admin_dashboard/screens/components/tables/graph.dart';
-import 'package:responsive_admin_dashboard/screens/components/tables/savings.dart';
 import 'package:responsive_admin_dashboard/screens/components/toolbar.dart';
-import 'components/tables/new_laptop.dart';
 
 class LaptopComparingGraphScreen extends StatefulWidget {
   final dynamic arguments;
@@ -50,12 +46,8 @@ class _LaptopComparingGraphScreenState extends State<LaptopComparingGraphScreen>
 
   Future<LaptopData> getSelectedLaptopInfoData(id) async {
     var data = await fetchNewLaptop(id);
-    if (data != null) {
-      return data;
-    } else {
-      throw Exception('Error fetching data for laptop with ID $id');
+    return data;
     }
-  }
 
   loadContent() {
     return Theme(

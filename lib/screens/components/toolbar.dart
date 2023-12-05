@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
@@ -45,8 +46,15 @@ class Toolbar {
             ),
             Expanded(
               flex: 1,
-              child: Image.asset(
-                "assets/images/gementeAmsterdam.png",
+              child: laptops == null 
+                ?
+                  Image.asset(
+                    "assets/images/kpnLogo.png",
+                    fit: BoxFit.contain,
+                    height: 80,
+                  )
+                : Image.asset(
+                 "assets/images/gementeAmsterdam.png",
                 fit: BoxFit.contain,
                 height: 42,
               ),
@@ -59,7 +67,10 @@ class Toolbar {
                   )
                 : Flexible(
                     flex: 4,
-                    child: Container(child: rightText),
+                    child: Container(
+                      alignment: Alignment.centerRight,
+                      child: rightText
+                    ),
                   ),
           ],
         ),

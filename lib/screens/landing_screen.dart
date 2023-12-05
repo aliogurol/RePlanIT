@@ -46,7 +46,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 _buildCard("Laptops", Icons.laptop, context,
                     Responsive.laptopScreen, Colors.grey),
                 _buildCard("Servers", Icons.network_wifi, context,
-                    Responsive.landingScreen, Colors.grey),
+                    Responsive.serversMain, Colors.grey),
                 _buildCard("Switches", Icons.router, context,
                     Responsive.landingScreen, Colors.grey),
                 _buildCard(

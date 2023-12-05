@@ -1,5 +1,3 @@
-import 'dart:collection';
-import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/data/laptops.dart';
