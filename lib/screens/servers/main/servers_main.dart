@@ -47,6 +47,7 @@ class _ServersMainState extends State<ServersMain> {
           {'text': Responsive.serversMain, 'route': Responsive.serversMain},
         ],
         currentRoute: Responsive.serversMain,
+        logo: LogoType.kpn
       ),
     );
   }

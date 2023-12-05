@@ -62,6 +62,7 @@ class _CommonServerPageState extends State<CommonServerPage> {
           {'text': Responsive.sustainability, 'route': Responsive.sustainability},
         ],
         currentRoute: Responsive.sustainability,
+        logo: LogoType.kpn
       ),
     );
   }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
@@ -8,15 +7,29 @@ import 'package:responsive_admin_dashboard/screens/laptop_comparing_graph_screen
 import 'package:responsive_admin_dashboard/screens/laptop_comparing_savings_screen.dart';
 import 'package:responsive_admin_dashboard/screens/laptop_comparing_screen.dart';
 
+enum LogoType {
+  gementeAmsterdam,
+  kpn
+}
+
 class Toolbar {
   final bool displayButtons;
   final Widget rightText;
-   int hoverOn = 0;
+  int hoverOn = 0;
   final List<LaptopData> laptops;
   final List<Map<String, dynamic>> routes;
   final String currentRoute;
+  final LogoType? logo;
 
-  Toolbar({ required this.displayButtons, required this.rightText, required this.hoverOn, required this.laptops, required this.routes, required this.currentRoute});
+  Toolbar({
+    required this.displayButtons,
+    required this.rightText,
+    required this.hoverOn,
+    required this.laptops,
+    required this.routes,
+    required this.currentRoute,
+    this.logo,
+  });
 
   static Widget build({
     required bool displayButtons,
@@ -24,7 +37,9 @@ class Toolbar {
     required int hoverOn,
     List<LaptopData>? laptops,
     required List<Map<String, dynamic>> routes,
-    required String currentRoute, int? clickedOn,
+    required String currentRoute,
+    int? clickedOn,
+    LogoType? logo,
   }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -46,39 +61,54 @@ class Toolbar {
             ),
             Expanded(
               flex: 1,
-              child: laptops == null 
-                ?
-                  Image.asset(
-                    "assets/images/kpnLogo.png",
-                    fit: BoxFit.contain,
-                    height: 80,
-                  )
-                : Image.asset(
-                 "assets/images/gementeAmsterdam.png",
-                fit: BoxFit.contain,
-                height: 42,
-              ),
+              child: _buildLogo(logo),
             ),
             Spacer(flex: 3),
             displayButtons
                 ? Flexible(
                     flex: 4,
-                    child: ButtonRow(hoverOn: hoverOn, clickedOn: clickedOn, laptops: laptops ?? [], currentRoute: currentRoute,),
+                    child: ButtonRow(
+                      hoverOn: hoverOn,
+                      clickedOn: clickedOn,
+                      laptops: laptops ?? [],
+                      currentRoute: currentRoute,
+                    ),
                   )
                 : Flexible(
                     flex: 4,
                     child: Container(
                       alignment: Alignment.centerRight,
-                      child: rightText
+                      child: rightText,
                     ),
                   ),
           ],
         ),
-        Breadcrumbs(items: routes,currentRoute: currentRoute,),
+        Breadcrumbs(items: routes, currentRoute: currentRoute),
       ],
     );
   }
+  static Widget _buildLogo(LogoType? logo) {
+    String imagePath;
+
+    switch (logo) {
+      case LogoType.gementeAmsterdam:
+        imagePath = "assets/images/gementeAmsterdam.png";
+        break;
+      case LogoType.kpn:
+        imagePath = "assets/images/kpnLogo.png";
+        break;
+      default:
+        imagePath = "assets/images/gementeAmsterdam.png";
+    }
+
+    return Image.asset(
+      imagePath,
+      fit: BoxFit.contain,
+      height: logo == null ? 42 : 80,
+    );
+  }
 }
+
 
 class ButtonRow extends StatefulWidget {
 
