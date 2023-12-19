@@ -13,6 +13,7 @@ class ServersMain extends StatefulWidget {
 
 class _ServersMainState extends State<ServersMain> {
   bool showPerformanceServerGroup = false;
+  bool showFarmPassport = false;
   Set<String> selectedLocations = Set();
   Set<String> selectedServerGroups = Set();
 
@@ -20,6 +21,12 @@ class _ServersMainState extends State<ServersMain> {
   void updateShowPerformanceServerGroup(bool showInfo) {
     setState(() {
       showPerformanceServerGroup = showInfo;
+    });
+  }
+  
+  // Callback function to update showFarmPassport
+  void updateShowFarmPassport(bool showInfo) {
+    setState(() {
     });
   }
 
@@ -61,6 +68,7 @@ class _ServersMainState extends State<ServersMain> {
             header: 'KPN DATACENTER',
             content: ServerGroupSelection(
               onShowPerformanceServerGroup: updateShowPerformanceServerGroup,
+              onShowFarmPassport: updateShowFarmPassport,
               selectedLocations: selectedLocations,
               selectedServerGroups: selectedServerGroups,
             ),
@@ -76,12 +84,12 @@ class _ServersMainState extends State<ServersMain> {
         Expanded(
           child: CustomContainer(
             header: 'FARM PASSPORT',
-            content: showPerformanceServerGroup
-                ? FarmPassport(
+            content: selectedServerGroups.isEmpty
+                ? Container()
+                : FarmPassport(
                     selectedLocations: selectedLocations,
                     selectedServerGroups: selectedServerGroups,
                   )
-                : Container(),
           ),
         ),
       ],

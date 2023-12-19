@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class ServerGroupSelection extends StatefulWidget {
   final Function(bool) onShowPerformanceServerGroup;
+  final Function(bool) onShowFarmPassport;
   late final Set<String> selectedLocations;
   late final Set<String> selectedServerGroups;
 
   ServerGroupSelection({
     required this.onShowPerformanceServerGroup,
+    required this.onShowFarmPassport,
     required this.selectedLocations,
     required this.selectedServerGroups,
   });
@@ -43,6 +45,7 @@ class _ServerGroupSelectionState extends State<ServerGroupSelection> {
 
   void toggleServerGroupSelection(String serverGroup) {
     setState(() {
+       widget.onShowFarmPassport(true);
       if (widget.selectedServerGroups.contains(serverGroup)) {
         widget.selectedServerGroups.remove(serverGroup);
       } else {
@@ -148,7 +151,7 @@ class _ServerGroupSelectionState extends State<ServerGroupSelection> {
             ),
           ),
       child: Text(
-        'Scan Server Farm',
+        'Show Current Performance',
         style: TextStyle(color: Colors.white),
       ),
     );

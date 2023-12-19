@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_admin_dashboard/constants/constants.dart';
 import 'package:responsive_admin_dashboard/models/server_info_model.dart';
 
 enum TableContentType {
@@ -21,8 +22,7 @@ class IndividualServerInfoTable extends StatefulWidget {
       _IndividualServerInfoTableState();
 }
 
-class _IndividualServerInfoTableState
-    extends State<IndividualServerInfoTable> {
+class _IndividualServerInfoTableState extends State<IndividualServerInfoTable> {
   String? selectedDropdownValue;
 
   @override
@@ -50,7 +50,7 @@ class _IndividualServerInfoTableState
       case TableContentType.dynamicContent:
         return Text('');
       case TableContentType.staticContent:
-        return Text('Static data of server ' + widget.server.name);
+        return Text('Static data of server ' + widget.server.name, style: bold,);
       case TableContentType.impactContent:
         return Text(
           'POSSIBLE SAVINGS Q1 2023',
@@ -71,65 +71,53 @@ class _IndividualServerInfoTableState
   }
 
   List<TableRow> _buildDynamicData() => [
-        _buildTableRow('Current workload', '8000 Tb/s', null),
-        _buildTableRow('Memory usage', '30 %', null),
-        _buildTableRow('CPU usage', '30 %', null),
-        _buildTableRow('Power draw', '10', null),
-        _buildTableRow('Energy Consumption per year', '100 kWh', null),
-        _buildTableRow('Current status', 'slow', Colors.orange),
-        _buildTableRow('Advised actions', '1 action', Colors.green),
+        _buildTableRow(Text('Current workload', style: bold), Text('8000 Tb/s')),
+        _buildTableRow(Text('Memory usage', style: bold), Text('30 %')),
+        _buildTableRow(Text('CPU usage', style: bold), Text('30 %')),
+        _buildTableRow(Text('Power draw', style: bold), Text('10'),),
+        _buildTableRow(Text('Energy Consumption per year', style: bold), Text('100 kWh')),
+        _buildTableRow(Text('Current status', style: bold), Text( 'slow',style: boldOrange)),
+        _buildTableRow(Text('Advised actions', style: bold), Text('Change to Eco Mode', style: boldGreen)),
       ];
 
   List<TableRow> _buildStaticData() => [
-        _buildTableRow('CPU capacity', '800 cores xxx TDF'),
-        _buildTableRow('Memory usage', '30.000 GB'),
-        _buildTableRow('Power management setting', 'off'),
-        _buildTableRow('End of Contract', '24-09-13'),
+        _buildTableRow(Text('CPU capacity', style: bold), Text('800 cores xxx TDF')),
+        _buildTableRow(Text('Memory usage', style: bold), Text('30.000 GB')),
+        _buildTableRow(Text('Power management setting', style: bold), Text('off')),
+        _buildTableRow(Text('End of Contract', style: bold), Text('24-09-13')),
       ];
 
   List<TableRow> _getImpact() => [
-        _buildHeaderRow(['Actions', 'Co2', 'Energy', 'E-waste']),
-        _buildDataRow(['Change to Eco mode', '-11', '100', '2']),
-        _buildTotalRow(['Total', '22', '100', '23']),
-      ];
+    TableRow(
+      children: ['Actions', 'Co2', 'Energy', 'E-waste']
+          .map((header) => _buildTableCell(Text(header, style: bold)))
+          .toList(),
+    ),
+    TableRow(
+      children: ['Change to Eco mode', '-11', '100', '2']
+          .map((value) => _buildTableCell(Text(value)))
+          .toList(),
+    ),
+    TableRow(
+      children: ['TOTAL', '22', '100', '23']
+          .map((value) => _buildTableCell(Text(value)))
+          .toList(),
+    )
+  ];
 
-  TableRow _buildHeaderRow(List<String> headers) => TableRow(
-        children: headers
-            .map((header) => _buildTableCell(header, FontWeight.bold))
-            .toList(),
-      );
-
-  TableRow _buildDataRow(List<String> data) => TableRow(
-        children: data
-            .map((value) => _buildTableCell(value, null))
-            .toList(),
-      );
-
-  TableRow _buildTotalRow(List<String> data) => TableRow(
-        children: data
-            .map((value) => _buildTableCell(value, FontWeight.bold))
-            .toList(),
-      );
-
-  TableRow _buildTableRow(String label, String value, [Color? textColor]) 
+  TableRow _buildTableRow(Text text1, Text text2) 
     =>  TableRow(
           children: [
-            _buildTableCell(label, FontWeight.bold),
-            _buildTableCell(value, null, textColor),
+            _buildTableCell(text1),
+            _buildTableCell(text2),
           ],
         );
 
-  Widget _buildTableCell(String text, FontWeight? fontWeight,[Color? textColor]) 
+  Widget _buildTableCell(Text text) 
     =>  TableCell(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              text,
-              style: TextStyle(
-                fontWeight: fontWeight,
-                color: textColor,
-              ),
-            ),
+            child: text
           ),
         );
 }

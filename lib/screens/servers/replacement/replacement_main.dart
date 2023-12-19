@@ -44,8 +44,8 @@ class _ReplecamentMainState extends State<ReplecamentMain> {
             FarmPassportTable(name: serverData.farmName, location: serverData.farmLocation, size: serverData.farmSize)
           ],
         ), header: 'DATACENTER'),
-        FlexWidget(widget: PlannedAction(onSelect: updateImpactReplacementList), flex: 2, header: 'PLANNED ACTION'),
-        FlexWidget(widget: ImpactReplacement(selectedServers: showImpactScenario), header: 'IMPACT REPLACEMENT'),
+        FlexWidget(widget: PlannedAction(onSelect: updateImpactReplacementList), header: 'PLANNED ACTION'),
+        FlexWidget(widget: ImpactReplacement(selectedServers: showImpactScenario), flex: 2, header: 'IMPACT REPLACEMENT'),
       ],
       updateScenario: (data) {},
     );

@@ -16,6 +16,9 @@ const red = Colors.red;
 
 const bold = TextStyle(fontWeight: FontWeight.bold);
 
+const boldOrange = TextStyle(fontWeight: FontWeight.bold, color: orange);
+const boldGreen = TextStyle(fontWeight: FontWeight.bold, color: green);
+
 // Default App Padding
 const appPadding = 16.0;
 
