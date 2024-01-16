@@ -67,24 +67,28 @@ class _CommonServerPageState extends State<CommonServerPage> {
     );
   }
 
-  Widget _buildPageContent(ServerData server) {
-    List<Widget> customContainers = [];
+Widget _buildPageContent(ServerData server) {
+  List<Widget> customContainers = [];
 
-    for (FlexWidget flexWidget in widget.contents) {
-      customContainers.add(
-        Expanded(
-          flex: flexWidget.flex ?? 1,
+  for (FlexWidget flexWidget in widget.contents) {
+    customContainers.add(
+      Expanded(
+        flex: flexWidget.flex ?? 1,
+        child: Container(
+          width: double.infinity,  // Ensure the container takes up the available width
           child: CustomContainer(
             header: flexWidget.header,
             content: flexWidget.widget,
           ),
         ),
-      );
-    }
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: customContainers,
+      ),
     );
   }
+
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: customContainers,
+  );
+}
+
 }

@@ -9,6 +9,7 @@ import 'package:responsive_admin_dashboard/screens/market_place_screen.dart';
 import 'package:responsive_admin_dashboard/screens/login_screen.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/screens/positive_impact_report_copy.dart';
+import 'package:responsive_admin_dashboard/screens/servers/expansion/expansion_main.dart';
 import 'package:responsive_admin_dashboard/screens/servers/individual_server/individual_server_info.dart';
 import 'package:responsive_admin_dashboard/screens/servers/main/servers_main.dart';
 import 'package:responsive_admin_dashboard/screens/servers/replacement/replacement_main.dart';
@@ -58,6 +59,9 @@ class MyRoutes {
       case Responsive.replacementImpact:
         print('Navigated to ReplecamentMain');
         return MaterialPageRoute(builder: ((context) => ReplecamentMain()),settings: setting);
+      case Responsive.expansionImpact:
+        print('Navigated to ExpansionMain');
+        return MaterialPageRoute(builder: ((context) => ExpansionMain()),settings: setting);
       case Responsive.sustainability:
         print('Navigated to Sustainability');
         return MaterialPageRoute(builder: ((context) => SustainabilityMain()),settings: setting);

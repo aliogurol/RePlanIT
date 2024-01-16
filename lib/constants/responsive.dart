@@ -15,6 +15,7 @@ class Responsive extends StatelessWidget {
   static const String positiveImpactReport = '/positive_impact_report';
   static const String serversMain = 'data_center';
   static const String replacementImpact = 'replecament_impact';
+  static const String expansionImpact = 'expansion_impact';
   static const String sustainability= 'sustainability';
   static const String individualServerInfo= 'individual_server';
 

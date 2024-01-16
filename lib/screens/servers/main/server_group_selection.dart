@@ -27,7 +27,7 @@ class _ServerGroupSelectionState extends State<ServerGroupSelection> {
         widget.selectedServerGroups = Set<String>();
       } else {
         widget.selectedLocations = ['Amsterdam', 'Haarlem', 'Apeldoorn', 'Rotterdam', 'Groningen', 'Delft'].toSet();
-        widget.selectedServerGroups = ['KPN 1', 'KPN 2', 'Group 3', 'Group 4', 'Group 5'].toSet();
+        widget.selectedServerGroups = ['KPN 1', 'KPN 2', 'KPN 3', 'Group 3', 'Group 4', 'Group 5'].toSet();
       }
       selectAll = !selectAll;
     });
@@ -123,7 +123,7 @@ class _ServerGroupSelectionState extends State<ServerGroupSelection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        for (String serverGroup in ['KPN 1', 'KPN 2', 'Group 3', 'Group 4', 'Group 5'])
+        for (String serverGroup in ['KPN 1', 'KPN 2', 'KPN 3', 'Group 3', 'Group 4', 'Group 5'])
           Row(
             children: [
               Checkbox(

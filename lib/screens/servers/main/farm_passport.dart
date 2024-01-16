@@ -31,7 +31,8 @@ class FarmPassport extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    // Implement action for the first button
+                    ServerData server = servers.firstWhere((element) => element.farmName == selectedServerGroups.first);
+                    Navigator.pushNamed(context, Responsive.expansionImpact, arguments: server);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF407885),
@@ -48,7 +49,7 @@ class FarmPassport extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    ServerData server = servers.firstWhere((element) => element.farmLocation == selectedLocations.first);
+                    ServerData server = servers.firstWhere((element) => element.farmName == selectedServerGroups.first);
                     Navigator.pushNamed(context, Responsive.replacementImpact, arguments: server);
                   },
                   style: ElevatedButton.styleFrom(

@@ -32,3 +32,10 @@ List<String> tempScenarios = [
   'A6 Replace 1 server by ref',
   'A7 Prolong support contract',
 ];
+
+// scenarios
+List<String> tempExpansionScenarios = [
+  'S1: Expand with 2 new servers model x',
+  'S2: Expand with 3 refurbished servers model y',
+  'S3: Upgrade 10 current servers',
+];
