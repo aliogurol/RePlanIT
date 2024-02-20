@@ -180,6 +180,7 @@ class _PlannedActionState extends State<PlannedAction> {
               'totalGHGEmission': server == '123' ? '110' : '22',
               'energy': '-100',
               'eWaste': server == '123' ? '250' : '100',
+              'isSelected': false,
             })
         .toList();
   }

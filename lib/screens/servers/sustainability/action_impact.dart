@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/screens/servers/sustainability/tables/action_impact_table.dart';
 
 class ActionImpact extends StatefulWidget {
-  final List<String> actionList;
+  final List<Map> actionList;
 
   ActionImpact({required this.actionList});
 

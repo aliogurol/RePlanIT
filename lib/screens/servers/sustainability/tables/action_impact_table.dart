@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ActionImpactTable extends StatefulWidget {
-  final List<String> actionList;
+  final List<Map> actionList;
   final Function(List<String> selectedCheckboxes) onSelectionChanged;
 
   ActionImpactTable({required this.actionList, required this.onSelectionChanged});
@@ -54,8 +54,17 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
                   ),
                   TableCell(
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(100, 8, 8, 8),
-                      child: Text('POSSIBLE SAVINGS Q1 2023',style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),),
+                      padding: const EdgeInsets.fromLTRB(150, 8, 8, 8),
+                      child: Column(
+                        children: [
+                          Text('POSSIBLE SAVINGS 2024',
+                            style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+                          ),
+                          Text('Impact of your selected actions, within the first year',
+                            style: TextStyle(color: Colors.green, fontSize: 10),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -65,10 +74,29 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
           DataTable(
             columns: [
               DataColumn(label: Text('')),
-              DataColumn(label: Text('Actions', style: boldStyle)),
-              DataColumn(label: Text('CO2', style: boldStyle)),
-              DataColumn(label: Text('Energy', style: boldStyle)),
-              DataColumn(label: Text('E-waste', style: boldStyle)),
+              DataColumn(label: Column(
+                children: [
+                  Text('Actions', style: boldStyle),
+                ],
+              )),
+              DataColumn(label: Column(
+                children: [
+                  Text('CO2', style: boldStyle),
+                  Text('(${widget.actionList.first['unit']})'),
+                ],
+              )),
+              DataColumn(label: Column(
+                children: [
+                  Text('Energy', style: boldStyle),
+                  Text('(${widget.actionList.firstWhere((element) => element['scenario'].toString().contains('A2'))['unit']})'),
+                ],
+              )),
+              DataColumn(label: Column(
+                children: [
+                  Text('E-waste', style: boldStyle),
+                  Text('(${widget.actionList.last['unit']})'),
+                ],
+              )),
             ],
             rows: _buildDataRows(),
           ),
@@ -81,9 +109,9 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
   List<DataRow> _buildDataRows() {
     TextStyle boldStyle = TextStyle(fontWeight: FontWeight.bold);
     TextStyle greenStyle = TextStyle(color: Colors.green);
+    TextStyle greenBoldStyle = TextStyle(color: Colors.green,fontWeight: FontWeight.bold);
     List<DataRow> dataRows = [];
     for (int i = 0; i < widget.actionList.length; i++) {
-      String action = widget.actionList[i];
       dataRows.add(DataRow(
         cells: [
           DataCell(
@@ -97,21 +125,18 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
               },
             ),
           ),
+          DataCell(Container(width: 180, child: Text(widget.actionList[i]['scenario'], style: greenStyle))),
           DataCell(Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(action, style: greenStyle),
+            child: Text(widget.actionList[i]['CO2Emissions'], style: greenStyle),
           )),
           DataCell(Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('-11', style: greenStyle),
+            child: Text(widget.actionList[i]['EnergyConsuption'], style: greenStyle),
           )),
           DataCell(Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('-100', style: greenStyle),
-          )),
-          DataCell(Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('250', style: greenStyle),
+            child: Text(widget.actionList[i]['EWasteCreated'], style: greenStyle),
           )),
         ],
       ));
@@ -121,10 +146,10 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
       DataRow(
         cells: [
           DataCell(Text('')), // This cell is for the checkbox column, leave empty
-          DataCell(Text('Total', style: boldStyle)),
-          DataCell(Text('-500 CO2 eq')), // You can calculate and display the total CO2 here
-          DataCell(Text('-2000 kWh')), // You can calculate and display the total Energy here
-          DataCell(Text('2340 kg')), // You can calculate and display the total E-waste here
+          DataCell(Text('Total', style: greenBoldStyle)),
+          DataCell(Text('-46,8 CO2 eq.', style: greenBoldStyle)), // You can calculate and display the total CO2 here
+          DataCell(Text('-159 MWh', style: greenBoldStyle)), // You can calculate and display the total Energy here
+          DataCell(Text('220 kg', style: greenBoldStyle)), // You can calculate and display the total E-waste here
         ],
       ),
     );
@@ -135,7 +160,7 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
     List<String> selectedScenarios = [];
     for (int i = 0; i < widget.actionList.length; i++) {
       if (selectedCheckboxes[i]) {
-        selectedScenarios.add(widget.actionList[i]);
+        selectedScenarios.add(widget.actionList[i]['scenario']);
       }
     }
     return selectedScenarios;

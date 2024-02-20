@@ -22,28 +22,24 @@ class AdviceActionsServer extends StatelessWidget {
               TableCell(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text('Status'),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
                   child: Text('Action Advice'),
                 ),
               ),
             ],
           ),
-          _buildTableRow('123', 'Ineffective', 'A4 Change to eco mode', context),
-          _buildTableRow('234', 'Slow', 'A5 Change power settings', context),
-          _buildTableRow('988', 'Slow', 'A6 Replace server by ref', context),
-          _buildTableRow('223', 'Healthy', 'A7 Prolong support contract', context),
-          _buildTableRow('356', 'Healthy', '---', context),
+          _buildTableRow('123', 'A4 Change to balance mode', context),
+          _buildTableRow('234', 'A5 Switch off', context),
+          _buildTableRow('988', 'A6 Replace', context),
+          _buildTableRow('223', 'A7 Replace', context),
+          _buildTableRow('356', 'A5 Swithc off', context),
+          _buildTableRow('Server x', 'x', context),
+          _buildTableRow('x', 'x', context),
         ],
       ),
     );
   }
 
-  TableRow _buildTableRow(String column1, String column2, String column3, BuildContext context) {
+  TableRow _buildTableRow(String column1, String column2, BuildContext context) {
     return TableRow(
       children: [
         TableCell(
@@ -56,12 +52,6 @@ class AdviceActionsServer extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(column2),
-          ),
-        ),
-        TableCell(
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(column3),
           ),
         ),
       ],

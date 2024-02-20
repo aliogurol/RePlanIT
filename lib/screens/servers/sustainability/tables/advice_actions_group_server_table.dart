@@ -12,36 +12,28 @@ class AdviceActionsServerGroup extends StatelessWidget {
       child: Table(
         defaultColumnWidth: IntrinsicColumnWidth(),
         children: [
-          _buildTableRow('Server Groups', 'Status', 'Group Action', isHeader: true),
-          _buildTableRow(serverGroup, 'Ineffective', 'A1 Replace 3 servers by 1 next-generation model'),
-          _buildTableRow(serverGroup, 'Slow', 'A2 Upgrade all RAM to xxxx'),
-          _buildTableRow(serverGroup, 'Ineffective', 'A3 Decrease capacity by 10%'),
+          _buildTableRow('Server Group', 'Group Actions', extraWidget: Text('Server Group', style:TextStyle(fontWeight: FontWeight.bold))),
+          _buildTableRow(serverGroup, 'A1 Decrease capacity by 25%', extraWidget: _buildTableCellChild(serverGroup)),
+          _buildTableRow(serverGroup, 'A2 Change power settings to balance mode'),
+          _buildTableRow(serverGroup, 'A3 Replace 127 servers by 43 next generation model'),
         ],
       ),
     );
   }
 
-  TableRow _buildTableRow(String column1, String column2, String column3, {bool isHeader = false}) {
+  TableRow _buildTableRow(String column1, String column2, {Widget ?extraWidget}) {
     return TableRow(
       children: [
         TableCell(
           child: Padding(
             padding: EdgeInsets.fromLTRB(30, 8, 60, 8),
-            child:isHeader 
-              ? Text(column1, style:TextStyle(fontWeight: FontWeight.bold)) 
-              : _buildTableCellChild(column1),
+            child: extraWidget
           ),
         ),
         TableCell(
           child: Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text(column2, style: isHeader? TextStyle(fontWeight: FontWeight.bold) : null),
-          ),
-        ),
-        TableCell(
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(column3, style: isHeader? TextStyle(fontWeight: FontWeight.bold) : null),
+            child: Text(column2),
           ),
         ),
       ],

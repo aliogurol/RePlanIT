@@ -127,7 +127,7 @@ class _PlannedExpansionState extends State<PlannedExpansion> {
   }
 
   List<Map<String, dynamic>> getSelectedScenario() {
-        TextStyle blueStyle = TextStyle(color: Color(0xFF1400FF));
+    TextStyle blueStyle = TextStyle(color: Color(0xFF1400FF));
     TextStyle greenStyle = TextStyle(color: Color(0xFF018F31));
     TextStyle pinkStyle = TextStyle(color: Color(0xFFFF00C7));
     return selectedScenarios

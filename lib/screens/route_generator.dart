@@ -10,9 +10,11 @@ import 'package:responsive_admin_dashboard/screens/login_screen.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/screens/positive_impact_report_copy.dart';
 import 'package:responsive_admin_dashboard/screens/servers/expansion/expansion_main.dart';
+import 'package:responsive_admin_dashboard/screens/servers/impact_replacement_report/impact_replacement_report_main.dart';
 import 'package:responsive_admin_dashboard/screens/servers/individual_server/individual_server_info.dart';
 import 'package:responsive_admin_dashboard/screens/servers/main/servers_main.dart';
 import 'package:responsive_admin_dashboard/screens/servers/replacement/replacement_main.dart';
+import 'package:responsive_admin_dashboard/screens/servers/report/impact_report_main.dart';
 import 'package:responsive_admin_dashboard/screens/servers/sustainability/sustainability_main.dart';
 
 import 'laptop_screen.dart';
@@ -68,6 +70,12 @@ class MyRoutes {
       case Responsive.individualServerInfo:
         print('Navigated to Individual Server Info');
         return MaterialPageRoute(builder: ((context) => IndividualServerInfo()),settings: setting);
+      case Responsive.impactReplecamentReport:
+        print('Navigated to Impact Replecament Report');
+        return MaterialPageRoute(builder: ((context) => ImpactReplacementReportMain()),settings: setting);
+      case Responsive.impactServerReport:
+        print('Navigated to Impact Server Report');
+        return MaterialPageRoute(builder: ((context) => ImpactReportMain()),settings: setting);
       default:
     }
     return MaterialPageRoute(builder:(context) => Scaffold(

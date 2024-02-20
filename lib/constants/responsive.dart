@@ -18,6 +18,8 @@ class Responsive extends StatelessWidget {
   static const String expansionImpact = 'expansion_impact';
   static const String sustainability= 'sustainability';
   static const String individualServerInfo= 'individual_server';
+  static const String impactReplecamentReport = 'impact_replecament_report';
+  static const String impactServerReport = 'impact_server_report';
 
   final Widget mobile;
   final Widget? tablet;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/screens/servers/replacement/tables/impact_replacement_table.dart';
+import 'package:responsive_admin_dashboard/screens/servers/report/impact_report_main.dart';
 
 class ImpactReplacement extends StatefulWidget {
   final List<Map<String, dynamic>> selectedServers;
@@ -45,21 +47,43 @@ class _ImpactReplacementState extends State<ImpactReplacement> {
           alignment: Alignment.bottomRight,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _selectedScenarios = ImpactReplacementTable(selectedServers: widget.selectedServers);
-                });
-                List<Map<String, dynamic>> selectedData = _selectedScenarios.getSelectedServers();
-                print(selectedData);
-              },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _selectedScenarios = ImpactReplacementTable(selectedServers: widget.selectedServers);
+                    });
+                    List<Map<String, dynamic>> selectedData = _selectedScenarios.getSelectedServers();
+                    Navigator.pushNamed(context, Responsive.impactServerReport, arguments: selectedData);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(48, 182, 1, 0.57),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-              child: Text('Impact Report',style: TextStyle(color: Colors.white)),
+                  child: Text('Impact Report',style: TextStyle(color: Colors.white)),
+                ),
+                SizedBox(width: 10,),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _selectedScenarios = ImpactReplacementTable(selectedServers: widget.selectedServers);
+                    });
+                    List<Map<String, dynamic>> selectedData = _selectedScenarios.getSelectedServers();
+                    Navigator.pushNamed(context, Responsive.impactReplecamentReport, arguments: selectedData);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(48, 182, 1, 0.57),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  child: Text('Impact Over Time',style: TextStyle(color: Colors.white)),
+                ),
+              ],
             ),
           ),
         ),

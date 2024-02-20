@@ -26,8 +26,8 @@ class _SustainabilityMainState extends State<SustainabilityMain> {
       mainHeader: 'SUSTAINABILITY ADVISE',
       contents: [
         FlexWidget(widget: DataCenterTable(server: serverData,), header: 'DATACENTER ' + serverData.farmName),
-        FlexWidget(widget: AdvisedAction(selectedServer: serverData), flex: 2, header: 'ADVISED ACTION'),
-        FlexWidget(widget: ActionImpact(actionList: tempScenarios), header: 'ACTION IMPACT'),
+        FlexWidget(widget: AdvisedAction(selectedServer: serverData), header: 'ADVISED ACTION'),
+        FlexWidget(widget: ActionImpact(actionList: tempSustainabilityScenarios), flex: 2, header: 'ACTION IMPACT'),
       ],
       updateScenario: (data) {},
     );

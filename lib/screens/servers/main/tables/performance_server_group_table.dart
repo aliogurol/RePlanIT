@@ -15,30 +15,23 @@ class _PerformanceServerGroupTableState extends State<PerformanceServerGroupTabl
       child: Table(
         defaultColumnWidth: IntrinsicColumnWidth(),
         children: [
-          _buildTableRow('Max workload', 'xx', additionalWidget: _buildDropdown(['Tb/s', 'Queries/s', 'TDC-C'])),
-          _buildTableRow('Min workload', 'xx'),
-          _buildTableRow('Average workload', 'xx'),
-          _buildTableRow('Memory usage', '30 %', textColor: Colors.orange),
+          _buildTableRow('Memory usage', '45 %', textColor: Colors.orange),
           _buildTableRow(
             'Max CPU usage',
-            '30 % 1,100 GHz',
+            '36 %',
             additionalText: '(Monday 9-10-2023, 14:23 hours)',
             textColor: Colors.orange,
           ),
           _buildTableRow(
             'Min CPU usage',
-            '30 % 190 GHz',
+            '20 %',
             additionalText: '(Sunday 8-10-2023, 02:54 hours)',
             textColor: Colors.orange,
           ),
-          _buildTableRow('Power draw', '10', textColor: Colors.orange, additionalWidget: _buildDropdown(['Watt', 'kW', 'MW'])),
-          _buildTableRow('Energy consumption per year', '100 kWh', textColor: Colors.orange),
+          _buildTableRow('Power draw', '40 kWatt'),
           _buildTableRow('', '',),
           _buildTableRow('', '',),
-          _buildTableRow('STATUS', 'ineffective', 
-          additionalText: 'The current performance of this server group is ineffective',
-          textColor: Colors.orange),
-          _buildTableRow('ADVISED ACTIONS', '7 actions',
+          _buildTableRow('ADVISED ACTIONS', '3 actions',
           additionalText: 'Improve the effectiveness and efficiency of this server group by these actions.',
           textColor: Colors.green),
         ],
@@ -82,29 +75,6 @@ class _PerformanceServerGroupTableState extends State<PerformanceServerGroupTabl
               ],
             ),
           ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDropdown(List<String> items) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end, // Align to the right
-      children: [
-        DropdownButton<String>(
-          value: items.first,
-          items: items.map((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-          onChanged: (String? newValue) {
-              setState(() {
-                selectedDropdownValue = newValue;
-                print(selectedDropdownValue);
-              });
-          },
         ),
       ],
     );
