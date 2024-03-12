@@ -6,6 +6,7 @@ class AdviceActionsServer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle greenStyle = TextStyle(color: Colors.green);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Table(
@@ -22,7 +23,7 @@ class AdviceActionsServer extends StatelessWidget {
               TableCell(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text('Action Advice'),
+                  child: Text('Action Advice', style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
               ),
             ],
@@ -51,7 +52,7 @@ class AdviceActionsServer extends StatelessWidget {
         TableCell(
           child: Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text(column2),
+            child: Text(column2, style: TextStyle(color: Colors.green)),
           ),
         ),
       ],

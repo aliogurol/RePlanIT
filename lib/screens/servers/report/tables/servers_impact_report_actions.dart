@@ -1,6 +1,5 @@
 import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_admin_dashboard/constants/constants.dart';
 
 class ServersImpactReportActionsTable extends StatefulWidget {
   final List<Map<String, dynamic>> selectedScenarios;
@@ -29,17 +28,16 @@ class _ServersImpactReportActionsTableState extends State<ServersImpactReportAct
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 10),
-            ...tempImpactReportScenarios.map((scenario) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(scenario['scenario'], style: TextStyle(color: Colors.green),),
-                ),
-              ],
-            );
-          }).toList(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: widget.selectedScenarios.map((scenario) {
+              print(widget.selectedScenarios);
+              return Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(scenario['action'], style: TextStyle(color: Colors.green)),
+              );
+            }).toList()
+          ),
           SizedBox(height: 20),
           Text('TOTAL', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),),
           SizedBox(height: 25),
@@ -52,7 +50,7 @@ class _ServersImpactReportActionsTableState extends State<ServersImpactReportAct
   List<String> labels = ['Quarter', 'Semester', 'Semester', 'Year'];
 
   return FlutterSlider(
-    values: [0, 1, 2, 3], // Index values corresponding to each label
+    values: [0, 1, 2, 3],
     min: 0,
     max: 3,
     trackBar: FlutterSliderTrackBar(

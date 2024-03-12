@@ -53,6 +53,20 @@ class _ImpactReplacementState extends State<ImpactReplacement> {
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.yellow[700],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  child: Text('Buy Servers',style: TextStyle(color: Colors.white)),
+                ),
+                SizedBox(width: 10,),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
                       _selectedScenarios = ImpactReplacementTable(selectedServers: widget.selectedServers);
                     });
                     List<Map<String, dynamic>> selectedData = _selectedScenarios.getSelectedServers();

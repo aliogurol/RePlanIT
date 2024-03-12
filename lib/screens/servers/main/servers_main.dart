@@ -12,13 +12,13 @@ class ServersMain extends StatefulWidget {
 }
 
 class _ServersMainState extends State<ServersMain> {
-  bool showPerformanceServerGroup = false;
+  List<String> showPerformanceServerGroup = [];
   bool showFarmPassport = false;
   Set<String> selectedLocations = Set();
-  Set<String> selectedServerGroups = Set();
+  List<String> selectedServerGroups = [];
 
   // Callback function to update showPerformanceServerGroup
-  void updateShowPerformanceServerGroup(bool showInfo) {
+  void updateShowPerformanceServerGroup(List<String> showInfo) {
     setState(() {
       showPerformanceServerGroup = showInfo;
     });
@@ -54,7 +54,7 @@ class _ServersMainState extends State<ServersMain> {
           {'text': Responsive.serversMain, 'route': Responsive.serversMain},
         ],
         currentRoute: Responsive.serversMain,
-        logo: LogoType.kpn
+        // logo: LogoType.kpn
       ),
     );
   }
@@ -65,7 +65,7 @@ class _ServersMainState extends State<ServersMain> {
       children: [
         Expanded(
           child: CustomContainer(
-            header: 'KPN DATACENTER',
+            header: 'DATACENTERS',
             content: ServerGroupSelection(
               onShowPerformanceServerGroup: updateShowPerformanceServerGroup,
               onShowFarmPassport: updateShowFarmPassport,
@@ -77,13 +77,13 @@ class _ServersMainState extends State<ServersMain> {
         Expanded(
           flex: 2,
           child: CustomContainer(
-            header: 'PERFORMANCE SERVER GROUP',
-            content: showPerformanceServerGroup ? PerformanceServerGroup() : Container(),
+            header: 'PERFORMANCE DATACENTERS',
+            content: showPerformanceServerGroup.isNotEmpty ? PerformanceServerGroup(selectedDataCenters: showPerformanceServerGroup) : Container(),
           ),
         ),
         Expanded(
           child: CustomContainer(
-            header: 'FARM PASSPORT',
+            header: 'DATACENTER PASSPORT',
             content: selectedServerGroups.isEmpty
                 ? Container()
                 : FarmPassport(

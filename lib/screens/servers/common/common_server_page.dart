@@ -33,15 +33,12 @@ class _CommonServerPageState extends State<CommonServerPage> {
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)!.settings.arguments;
     if (arguments == null) {
-      // Return an empty Container if no arguments are provided.
       return ServersMain();
     }
 
-    ServerData server = arguments as ServerData;
-
     return Scaffold(
       appBar: _buildAppBar(),
-      body: _buildPageContent(server),
+      body: _buildPageContent(),
     );
   }
 
@@ -62,12 +59,12 @@ class _CommonServerPageState extends State<CommonServerPage> {
           {'text': Responsive.sustainability, 'route': Responsive.sustainability},
         ],
         currentRoute: Responsive.sustainability,
-        logo: LogoType.kpn
+        // logo: LogoType.kpn
       ),
     );
   }
 
-  Widget _buildPageContent(ServerData server) {
+  Widget _buildPageContent() {
     List<Widget> customContainers = [];
 
     for (FlexWidget flexWidget in widget.contents) {

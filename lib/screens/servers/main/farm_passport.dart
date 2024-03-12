@@ -5,7 +5,7 @@ import 'package:responsive_admin_dashboard/models/server_info_model.dart';
 import 'package:responsive_admin_dashboard/screens/servers/main/tables/farm_passport_table.dart';
 
 class FarmPassport extends StatelessWidget {
-  final Set<String> selectedServerGroups;
+  final List<String> selectedServerGroups;
   final Set<String> selectedLocations;
 
   FarmPassport({

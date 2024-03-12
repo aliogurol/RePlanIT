@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_admin_dashboard/helpers/text_helper.dart';
 
 class ActionImpactTable extends StatefulWidget {
   final List<Map> actionList;
-  final Function(List<String> selectedCheckboxes) onSelectionChanged;
+  final Function( List<Map<String, dynamic>> selectedCheckboxes) onSelectionChanged;
 
   ActionImpactTable({required this.actionList, required this.onSelectionChanged});
 
@@ -56,11 +57,12 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(150, 8, 8, 8),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('POSSIBLE SAVINGS 2024',
+                          Text('POTENTIAL SAVINGS 2024',
                             style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
                           ),
-                          Text('Impact of your selected actions, within the first year',
+                          Text(splitTextIntoLines('Impact of your selected actions, within the first year* For an assumed lifetime of 6 years', 55),
                             style: TextStyle(color: Colors.green, fontSize: 10),
                           ),
                         ],
@@ -81,33 +83,42 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
               )),
               DataColumn(label: Column(
                 children: [
-                  Text('CO2', style: boldStyle),
+                  Text('CO₂ Emissions*', style: boldStyle),
                   Text('(${widget.actionList.first['unit']})'),
                 ],
               )),
               DataColumn(label: Column(
                 children: [
-                  Text('Energy', style: boldStyle),
+                  Text('Energy consumption', style: boldStyle),
                   Text('(${widget.actionList.firstWhere((element) => element['scenario'].toString().contains('A2'))['unit']})'),
                 ],
               )),
               DataColumn(label: Column(
                 children: [
-                  Text('E-waste', style: boldStyle),
+                  Text('E-waste created', style: boldStyle),
                   Text('(${widget.actionList.last['unit']})'),
                 ],
               )),
             ],
             rows: _buildDataRows(),
           ),
-          // Add a total row
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('*The production impact is spread over a total lifetime of 6 years.', style: TextStyle(fontSize: 10)),
+                Text('** The numbers for consecutive actions, assume that previous actions are executed too.',style: TextStyle(fontSize: 10))
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
   List<DataRow> _buildDataRows() {
-    TextStyle boldStyle = TextStyle(fontWeight: FontWeight.bold);
     TextStyle greenStyle = TextStyle(color: Colors.green);
     TextStyle greenBoldStyle = TextStyle(color: Colors.green,fontWeight: FontWeight.bold);
     List<DataRow> dataRows = [];
@@ -145,22 +156,24 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
     dataRows.add(
       DataRow(
         cells: [
-          DataCell(Text('')), // This cell is for the checkbox column, leave empty
-          DataCell(Text('Total', style: greenBoldStyle)),
-          DataCell(Text('-46,8 CO2 eq.', style: greenBoldStyle)), // You can calculate and display the total CO2 here
-          DataCell(Text('-159 MWh', style: greenBoldStyle)), // You can calculate and display the total Energy here
-          DataCell(Text('220 kg', style: greenBoldStyle)), // You can calculate and display the total E-waste here
+          DataCell(Text('')),
+          DataCell(Text('TOTAL IMPACT', style: greenBoldStyle)),
+          DataCell(Text('-46,8 CO₂ eq.', style: greenBoldStyle)),
+          DataCell(Text('-159 MWh', style: greenBoldStyle)), 
+          DataCell(Text('220 kg', style: greenBoldStyle)),
         ],
       ),
     );
     return dataRows;
   }
 
-  List<String> _getImpactReplacementTable() {
-    List<String> selectedScenarios = [];
+  List<Map<String, dynamic>>_getImpactReplacementTable() {
+   List<Map<String, dynamic>> selectedScenarios = [];
     for (int i = 0; i < widget.actionList.length; i++) {
       if (selectedCheckboxes[i]) {
-        selectedScenarios.add(widget.actionList[i]['scenario']);
+        selectedScenarios.add({
+          'action': widget.actionList[i]['scenario']
+        });
       }
     }
     return selectedScenarios;

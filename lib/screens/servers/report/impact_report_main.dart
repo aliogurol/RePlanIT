@@ -21,7 +21,6 @@ class _ImpactReportMainState extends State<ImpactReportMain> {
       selectedScenarios = List.empty();
     }
 
-print(selectedScenarios);
     return Scaffold(
       appBar: _buildAppBar(),
       body: _buildPageContent(selectedScenarios),
@@ -37,7 +36,7 @@ print(selectedScenarios);
         ), 
         Expanded(
           flex: 2,
-          child: CustomContainer(header: 'SUSTAINABILITY IMPACT Q1 2023', content: ServersImpactReportTable(selectedScenarios: selectedScenarios))
+          child: CustomContainer(header: 'SUSTAINABILITY IMPACT 2024', content: ServersImpactReportTable(selectedScenarios: selectedScenarios))
         ),
       ],
     );
@@ -60,7 +59,7 @@ print(selectedScenarios);
           {'text': Responsive.replacementImpact, 'route': Responsive.replacementImpact},
         ],
         currentRoute: Responsive.impactServerReport,
-        logo: LogoType.kpn
+        // logo: LogoType.kpn
       ),
     );
   }

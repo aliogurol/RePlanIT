@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ServerGroupSelection extends StatefulWidget {
-  final Function(bool) onShowPerformanceServerGroup;
+  final Function(List<String> selectedServerGroups) onShowPerformanceServerGroup;
   final Function(bool) onShowFarmPassport;
   late final Set<String> selectedLocations;
-  late final Set<String> selectedServerGroups;
+  late final List<String>selectedServerGroups;
 
   ServerGroupSelection({
     required this.onShowPerformanceServerGroup,
@@ -24,10 +24,10 @@ class _ServerGroupSelectionState extends State<ServerGroupSelection> {
     setState(() {
       if (selectAll) {
         widget.selectedLocations = Set<String>();
-        widget.selectedServerGroups = Set<String>();
+        widget.selectedServerGroups = List.empty();
       } else {
         widget.selectedLocations = ['Amsterdam', 'Haarlem', 'Apeldoorn', 'Rotterdam', 'Groningen', 'Delft'].toSet();
-        widget.selectedServerGroups = ['KPN 1', 'KPN 2', 'KPN 3', 'Group 3', 'Group 4', 'Group 5'].toSet();
+        widget.selectedServerGroups = ['Datacenter 1', 'Datacenter 2', 'Datacenter 3'];
       }
       selectAll = !selectAll;
     });
@@ -123,7 +123,7 @@ class _ServerGroupSelectionState extends State<ServerGroupSelection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        for (String serverGroup in ['KPN 1', 'KPN 2', 'KPN 3', 'Group 3', 'Group 4', 'Group 5'])
+        for (String serverGroup in ['Datacenter 1', 'Datacenter 2', 'Datacenter 3'])
           Row(
             children: [
               Checkbox(
@@ -142,7 +142,7 @@ class _ServerGroupSelectionState extends State<ServerGroupSelection> {
   Widget buildScanServerFarmButton() {
     return ElevatedButton(
       onPressed: () {
-        widget.onShowPerformanceServerGroup(true);
+        widget.onShowPerformanceServerGroup(widget.selectedServerGroups);
       },
       style: ElevatedButton.styleFrom(
             backgroundColor:Color(0xFF407885),
@@ -156,4 +156,5 @@ class _ServerGroupSelectionState extends State<ServerGroupSelection> {
       ),
     );
   }
+  
 }

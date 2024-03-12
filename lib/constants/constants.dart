@@ -33,7 +33,7 @@ List<Map> tempSustainabilityScenarios = [
   },
   {
     'scenario': 'A2 Decrease capacity by 25%',
-    'CO2Emissions': '-20.7',
+    'CO2Emissions': '-20.7**',
     'EnergyConsuption': '-47.3',
     'EWasteCreated': '-121',
     'unit': 'MWh'
@@ -48,6 +48,39 @@ List<Map> tempSustainabilityScenarios = [
 ];
 
 // scenarios
+// List<Map> tempExpansionScenarios = [
+//     {
+//     'scenario': 'S1: Expand with 2 new servers model x',
+//     'ghgEmissions': '-11',
+//     'co2Costs': '-11',
+//     'virginMaterials': '250',
+//     'eWaste': '300',
+//     'circularity': '10',
+//     'electricityUse': '-11',
+//     'electricityCosts': '-11',
+//   },
+//   {
+//     'scenario': 'S2: Expand with 3 refurbished servers model y',
+//     'ghgEmissions': '-11',
+//     'co2Costs': '-11',
+//     'virginMaterials': '250',
+//     'eWaste': '300',
+//     'circularity': '10',
+//     'electricityUse': '-11',
+//     'electricityCosts': '-11',
+//   },
+//   {
+//     'scenario': 'S3: Upgrade 10 current servers',
+//     'ghgEmissions': '-11',
+//     'co2Costs': '-11',
+//     'virginMaterials': '250',
+//     'eWaste': '300',
+//     'circularity': '10',
+//     'electricityUse': '-11',
+//     'electricityCosts': '-11',
+//   },
+// ];
+
 List<String> tempExpansionScenarios = [
   'S1: Expand with 2 new servers model x',
   'S2: Expand with 3 refurbished servers model y',
@@ -116,5 +149,44 @@ List<Map> tempImpactReportScenarios = [
     'electricityUse': '100',
     'electricityCosts': '100',
   },
-  
+  {
+    'scenario': 'A1 Change power settings to balance mode',
+    'ghgEmissions': '-9,5',
+    'co2Costs': '-3.971',
+    'virginMaterials': '0',
+    'eWaste': '0',
+    'circularity': '10',
+    'electricityUse': '-35',
+    'electricityCosts': '-10.500',
+  },
+  {
+    'scenario': 'A2 Decrease capacity by 25%',
+    'ghgEmissions': '-20,7',
+    'co2Costs': '-8.653',
+    'virginMaterials': '0',
+    'eWaste': '-121',
+    'circularity': '40',
+    'electricityUse': '-47,3',
+    'electricityCosts': '-14.190',
+  },
+  {
+    'scenario': 'A3 Replace 93 servers by 31 next generation models',
+    'ghgEmissions': '-16,6',
+    'co2Costs': '-6.939',
+    'virginMaterials': '341',
+    'eWaste': '341',
+    'circularity': '45',
+    'electricityUse': '-77',
+    'electricityCosts': '-23.100',
+  },
+  {
+    'scenario': 'Replace servers with by 10 new',
+    'ghgEmissions': '110',
+    'co2Costs': '-100',
+    'virginMaterials': '341',
+    'eWaste': '250',
+    'circularity': '45',
+    'electricityUse': '-77',
+    'electricityCosts': '-23.100',
+  },
 ];

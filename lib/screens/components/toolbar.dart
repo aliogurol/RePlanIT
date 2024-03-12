@@ -88,6 +88,10 @@ class Toolbar {
     );
   }
   static Widget _buildLogo(LogoType? logo) {
+
+    if(logo == null){
+      return Container();
+    }
     String imagePath;
 
     switch (logo) {

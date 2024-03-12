@@ -13,20 +13,24 @@ class SustainabilityMain extends StatefulWidget {
 }
 
 class _SustainabilityMainState extends State<SustainabilityMain> {
-  late ServerData serverData;
+  List<String> dataCenterName = List.empty();
+  late ServerData server;
 
   @override
   Widget build(BuildContext context) {
     if(ModalRoute.of(context)!.settings.arguments != null){
-      serverData = ModalRoute.of(context)!.settings.arguments as ServerData;
+      dataCenterName = ModalRoute.of(context)!.settings.arguments as List<String>;
+      server = servers.firstWhere((element) => element.farmName == dataCenterName.first);
     }else{
-      serverData = servers.first;
+      server = servers.first;
     }
+    print(server);
+    print(server.farmName);
     return CommonServerPage(
       mainHeader: 'SUSTAINABILITY ADVISE',
       contents: [
-        FlexWidget(widget: DataCenterTable(server: serverData,), header: 'DATACENTER ' + serverData.farmName),
-        FlexWidget(widget: AdvisedAction(selectedServer: serverData), header: 'ADVISED ACTION'),
+        FlexWidget(widget: DataCenterTable(server: server,), header: 'DATACENTER ' + server.farmName),
+        FlexWidget(widget: AdvisedAction(selectedServer: server), header: 'ADVISED ACTION'),
         FlexWidget(widget: ActionImpact(actionList: tempSustainabilityScenarios), flex: 2, header: 'ACTION IMPACT'),
       ],
       updateScenario: (data) {},

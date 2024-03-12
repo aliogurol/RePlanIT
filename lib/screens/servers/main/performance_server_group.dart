@@ -4,6 +4,10 @@ import 'package:responsive_admin_dashboard/data/server.dart';
 import 'package:responsive_admin_dashboard/screens/servers/main/tables/performance_server_group_table.dart';
 
 class PerformanceServerGroup extends StatelessWidget {
+    final List<String> selectedDataCenters;
+
+  PerformanceServerGroup({required this.selectedDataCenters});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -32,7 +36,7 @@ class PerformanceServerGroup extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, Responsive.sustainability, arguments: servers.first);
+                    Navigator.pushNamed(context, Responsive.sustainability, arguments: selectedDataCenters);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(48, 182, 1, 0.57),

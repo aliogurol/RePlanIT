@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/screens/servers/sustainability/tables/action_impact_table.dart';
 
 class ActionImpact extends StatefulWidget {
@@ -12,7 +13,7 @@ class ActionImpact extends StatefulWidget {
 
 class _ActionImpactState extends State<ActionImpact> {
   late ActionImpactTable _actionImpactTable;
-  List<String> _selectedScenarios = [];
+  List<Map<String, dynamic>> _selectedScenarios = [];
 
   @override
   void initState() {
@@ -23,7 +24,7 @@ class _ActionImpactState extends State<ActionImpact> {
     );
   }
 
-  void _onSelectionChanged(List<String> selectedScenarios) {
+  void _onSelectionChanged( List<Map<String, dynamic>> selectedScenarios) {
     setState(() {
       _selectedScenarios = selectedScenarios;
     });
@@ -50,8 +51,8 @@ class _ActionImpactState extends State<ActionImpact> {
             padding: const EdgeInsets.all(10.0),
             child: ElevatedButton(
               onPressed: () {
-                List<String> selectedData = _selectedScenarios;
-                print(selectedData);
+                List<Map<String, dynamic>> selectedData = _selectedScenarios;
+                Navigator.pushNamed(context, Responsive.impactServerReport, arguments: selectedData);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromRGBO(48, 182, 1, 0.57),

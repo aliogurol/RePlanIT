@@ -23,9 +23,8 @@ class _DataCenterTableState extends State<DataCenterTable> {
           Table(
             defaultColumnWidth: IntrinsicColumnWidth(),
             children: [
-              _buildTableRow('Current workload', '8000 Tb/s', null),
               _buildTableRow('Memory usage', '45 %', Colors.orange),
-              _buildTableRow('CPU usage','26 %', Colors.orange),
+              _buildTableRow('CPU usage','36 %', Colors.orange),
               _buildTableRow('Power draw', '40 kWatt' ,null),
               _buildTableRow('ADVISED ACTIONS', '3', Colors.green),
             ],

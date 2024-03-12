@@ -12,7 +12,7 @@ class ImpactReplacementReportMain extends StatefulWidget {
 
 class _ImpactReplacementReportMainState extends State<ImpactReplacementReportMain> {
   List<Map<String, dynamic>> showImpactScenario = [];
-    List<Widget> customContainers = [];
+  List<Widget> customContainers = [];
   late List<Map<String, dynamic>> selectedData;
 
   // Callback function to update updateImpactReplacementReportList
@@ -77,7 +77,7 @@ class _ImpactReplacementReportMainState extends State<ImpactReplacementReportMai
           {'text': Responsive.replacementImpact, 'route': Responsive.replacementImpact},
         ],
         currentRoute: Responsive.impactReplecamentReport,
-        logo: LogoType.kpn
+        // logo: LogoType.kpn
       ),
     );
   }
