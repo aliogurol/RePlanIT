@@ -18,6 +18,11 @@ class ImpactReplacementTable extends StatefulWidget {
           'totalGHGEmission': serverData['totalGHGEmission'],
           'energy': serverData['energy'],
           'eWaste': serverData['eWaste'],
+          'circularity': serverData['circularity'],
+          'electricityUse': serverData['electricityUse'],
+          'virginMaterials': serverData['virginMaterials'],
+          'co2_costs': serverData['co2_costs'],
+          'electricityCost': serverData['electricityCost'],
         });
       }
     }
@@ -33,7 +38,6 @@ class _ImpactReplacementTableState extends State<ImpactReplacementTable> {
   List<TableRow> _buildTableRows() {
     TextStyle greenStyle = TextStyle(color: Colors.green);
     return widget.selectedServers.map((serverData) {
-      String server = serverData['server'];
       return TableRow(
         children: [
           TableCell(
@@ -51,7 +55,7 @@ class _ImpactReplacementTableState extends State<ImpactReplacementTable> {
               child: Container(
                 width: 200, // Adjust the width as needed
                 child: Text(
-                  'S$server ${serverData['action']}',
+                  '${serverData['scenario']}: ${serverData['action']}',
                   style: greenStyle,
                   textAlign: TextAlign.center, // Center the text horizontally
                   maxLines: 2, // Adjust as needed or remove for unlimited lines
@@ -69,6 +73,9 @@ class _ImpactReplacementTableState extends State<ImpactReplacementTable> {
           TableCell(
             child: Center(child: Text(serverData['eWaste'], style: greenStyle)),
           ),
+          TableCell(
+            child: Center(child: Text(serverData['circularity'], style: greenStyle)),
+          ),
         ],
       );
     }).toList();
@@ -85,7 +92,7 @@ class _ImpactReplacementTableState extends State<ImpactReplacementTable> {
           TableRow(
             children: [
               TableCell(
-                child: SizedBox(), // Empty cell for spacing
+                child: SizedBox()
               ),
               TableCell(
                 child: Padding(
@@ -96,19 +103,45 @@ class _ImpactReplacementTableState extends State<ImpactReplacementTable> {
               TableCell(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Total GHG emissions (kg CO2 eq.)', style: boldStyle),
+                  child: Column(
+                    children: [
+                      Text('Total GHG emissions', style: boldStyle),
+                      Text('(kton CO₂ eq.)', style: boldStyle),
+                    ],
+                  ),
                 ),
               ),
               TableCell(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Energy (kWh)', style: boldStyle),
+                  child: Column(
+                    children: [
+                      Text('Energy', style: boldStyle),
+                      Text('(MWh)', style: boldStyle),
+                    ],
+                  ),
                 ),
               ),
               TableCell(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('E-waste (kg)', style: boldStyle),
+                  child: Column(
+                    children: [
+                      Text('E-waste', style: boldStyle),
+                      Text('(kg)', style: boldStyle),
+                    ],
+                  ),
+                ),
+              ),
+              TableCell(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Text('Circularity', style: boldStyle),
+                      Text('(%)', style: boldStyle),
+                    ],
+                  ),
                 ),
               ),
             ],

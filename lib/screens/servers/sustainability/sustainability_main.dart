@@ -24,8 +24,6 @@ class _SustainabilityMainState extends State<SustainabilityMain> {
     }else{
       server = servers.first;
     }
-    print(server);
-    print(server.farmName);
     return CommonServerPage(
       mainHeader: 'SUSTAINABILITY ADVISE',
       contents: [

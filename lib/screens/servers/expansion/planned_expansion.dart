@@ -136,10 +136,16 @@ class _PlannedExpansionState extends State<PlannedExpansion> {
               'scenario': scenario.contains('S1') ? 'S1 Expand farm with 2 new servers' :
                 (scenario.contains('S2') ? 'S2 Expand farm with 3 refurbished servers' : 
                 'Baseline: Upgrade 10 current servers (baseline scenario)'),
-              'totalGHGEmission': scenario.contains('S1') ? '44' : (scenario.contains('S2') ? '22' : '10'),
+              'totalGHGEmission': scenario.contains('S1') ? '12.8' : (scenario.contains('S2') ? '0.07' : '0.07'),
+              'co2_costs': scenario.contains('S1') ? '-3.971' : (scenario.contains('S2') ? '-8.653' : '0'),
               'energy': scenario.contains('S1') ? '50' : (scenario.contains('S2') ? '100' : '-30'),
-              'eWaste': scenario.contains('S1') ? '250' : (scenario.contains('S2') ? '100' : '20'),
+              'eWaste': scenario.contains('S1') ? '33' : (scenario.contains('S2') ? '33' : '0'),
+              'circularity': scenario.contains('S1') ? '35' : (scenario.contains('S2') ? '35' : '32'),
+              'virginMaterials': scenario.contains('S1') ? '33' : (scenario.contains('S2') ? '0' : '0'),
+              'electricityUse': scenario.contains('S1') ? '7.5' : (scenario.contains('S2') ? '7.5' : '0'),
+              'electricityCosts': scenario.contains('S1') ? '2.250' : (scenario.contains('S2') ? '2.250' : '0'),
               'style': scenario.contains('S1') ? blueStyle : (scenario.contains('S2') ? greenStyle : pinkStyle),
+              'isSelected': true,
             })
         .toList();
   }

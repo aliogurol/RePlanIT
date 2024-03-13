@@ -139,7 +139,7 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
           DataCell(Container(width: 180, child: Text(widget.actionList[i]['scenario'], style: greenStyle))),
           DataCell(Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(widget.actionList[i]['CO2Emissions'], style: greenStyle),
+            child: Text(widget.actionList[i]['CO2Emissions'] + (widget.actionList[i]['CO2Emissions'] == '-20.7' ? '**' : ''), style: greenStyle),
           )),
           DataCell(Padding(
             padding: const EdgeInsets.all(8.0),
@@ -172,7 +172,15 @@ class _ActionImpactTableState extends State<ActionImpactTable> {
     for (int i = 0; i < widget.actionList.length; i++) {
       if (selectedCheckboxes[i]) {
         selectedScenarios.add({
-          'action': widget.actionList[i]['scenario']
+          'action': widget.actionList[i]['scenario'],
+          'totalGHGEmission':  widget.actionList[i]['CO2Emissions'],
+          'energy':  widget.actionList[i]['EnergyConsuption'],
+          'eWaste':  widget.actionList[i]['EWasteCreated'],
+          'circularity':  widget.actionList[i]['EWasteCreated'],
+          'electricityUse':  widget.actionList[i]['electricityUse'],
+          'virginMaterials':  widget.actionList[i]['virginMaterials'],
+          'co2_costs':  widget.actionList[i]['co2Costs'],
+          'electricityCost':  widget.actionList[i]['electricityCosts'],
         });
       }
     }

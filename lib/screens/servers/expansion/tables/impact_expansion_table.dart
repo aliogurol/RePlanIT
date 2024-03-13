@@ -9,16 +9,22 @@ class ImpactExpansionTable extends StatefulWidget {
   List<Map<String, dynamic>> getSelectedServers() {
     List<Map<String, dynamic>> selectedData = [];
 
+    print(selectedServers);
     for (Map<String, dynamic> serverData in selectedServers) {
       bool isSelected = serverData['isSelected'] ?? false;
 
       if (isSelected) {
         selectedData.add({
           'server': serverData['server'],
-          'action': serverData['action'],
+          'action': serverData['scenario'],
           'totalGHGEmission': serverData['totalGHGEmission'],
-          'energy': serverData['energy'],
+          'energy': serverData['totalGHGEmission'],
           'eWaste': serverData['eWaste'],
+          'circularity': serverData['circularity'],
+          'electricityUse': serverData['electricityUse'],
+          'virginMaterials': serverData['virginMaterials'],
+          'co2_costs': serverData['co2_costs'],
+          'electricityCost': serverData['electricityCosts'],
         });
       }
     }

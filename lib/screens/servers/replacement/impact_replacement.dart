@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_admin_dashboard/constants/responsive.dart';
 import 'package:responsive_admin_dashboard/screens/servers/replacement/tables/impact_replacement_table.dart';
-import 'package:responsive_admin_dashboard/screens/servers/report/impact_report_main.dart';
 
 class ImpactReplacement extends StatefulWidget {
   final List<Map<String, dynamic>> selectedServers;
@@ -24,6 +23,11 @@ class _ImpactReplacementState extends State<ImpactReplacement> {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> filteredList = widget.selectedServers;
+    if (filteredList.length > 2) {
+      filteredList.removeWhere((item) => item['server'] != '123' && item['server'] != '124');
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -38,7 +42,7 @@ class _ImpactReplacementState extends State<ImpactReplacement> {
                   'View the impact of your selected replacement scenarios, compared to no replacements (extend support), within the first year',
                 ),
               ),
-              ImpactReplacementTable(selectedServers: widget.selectedServers),
+              ImpactReplacementTable(selectedServers: filteredList),
             ],
           ),
         ),
@@ -67,7 +71,7 @@ class _ImpactReplacementState extends State<ImpactReplacement> {
                 ElevatedButton(
                   onPressed: () {
                     setState(() {
-                      _selectedScenarios = ImpactReplacementTable(selectedServers: widget.selectedServers);
+                      _selectedScenarios = ImpactReplacementTable(selectedServers: filteredList);
                     });
                     List<Map<String, dynamic>> selectedData = _selectedScenarios.getSelectedServers();
                     Navigator.pushNamed(context, Responsive.impactServerReport, arguments: selectedData);

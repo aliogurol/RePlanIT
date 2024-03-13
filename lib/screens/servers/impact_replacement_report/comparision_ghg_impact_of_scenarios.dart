@@ -116,65 +116,65 @@ class _COMPARISIONGHGIMPACTOFSCENARIOSState extends State<COMPARISIONGHGIMPACTOF
         ),
         SizedBox(height: 30,),
         Text('Comparing replacement and extend lifetime scenario, over time'),
-        Container(
-          height: 300,
-          width: MediaQuery.of(context).size.width / 2,
-          padding: const EdgeInsets.all(8.0),
-          child: LineChart(
-            LineChartData(
-              axisTitleData: FlAxisTitleData(
-                show: true,
-                leftTitle: AxisTitle(
-                  titleText: 'GHG emissions (kgCO2)', 
-                  showTitle: true, 
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.bold
-                  )
-                ),
-                bottomTitle: AxisTitle(
-                  titleText: 'Years', 
-                  showTitle: true, 
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.bold
-                  )
-                )
-              ),
-              gridData: FlGridData(show: true, horizontalInterval: 1000),
-              titlesData: FlTitlesData(
-                leftTitles: SideTitles(
-                  showTitles: true,
-                  reservedSize: 40,
-                  getTitles: (value) {
-                    if (value == -3000 ||
-                        value == -2000 ||
-                        value == -1000 ||
-                        value == 0 ||
-                        value == 1000 ||
-                        value == 2000 ||
-                        value == 3000) {
-                      return value.toString();
-                    }
-                    return '';
-                  },
-                ),
-                bottomTitles: SideTitles(
-                  showTitles: true,
-                  reservedSize: 22,
-                  getTitles: (value) {
-                    return value.toInt().toString();
-                  },
-                ),
-              ),
-              borderData: FlBorderData(show: true, border: Border.all(color: Colors.black)),
-              minX: 0,
-              maxX: 10,
-              minY: -3000,
-              maxY: 5000,
-              lineBarsData: _buildLineChartData(selectedScenario),
-              backgroundColor: const Color(0xFF5197A7).withOpacity(0.26),
-            ),
-          ),
-        ),
+        // Container(
+        //   height: 300,
+        //   width: MediaQuery.of(context).size.width / 2,
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: LineChart(
+        //     LineChartData(
+        //       axisTitleData: FlAxisTitleData(
+        //         show: true,
+        //         leftTitle: AxisTitle(
+        //           titleText: 'GHG emissions (kgCO2)', 
+        //           showTitle: true, 
+        //           textStyle: TextStyle(
+        //             fontWeight: FontWeight.bold
+        //           )
+        //         ),
+        //         bottomTitle: AxisTitle(
+        //           titleText: 'Years', 
+        //           showTitle: true, 
+        //           textStyle: TextStyle(
+        //             fontWeight: FontWeight.bold
+        //           )
+        //         )
+        //       ),
+        //       gridData: FlGridData(show: true, horizontalInterval: 1000),
+        //       titlesData: FlTitlesData(
+        //         leftTitles: SideTitles(
+        //           showTitles: true,
+        //           reservedSize: 40,
+        //           getTitles: (value) {
+        //             if (value == -3000 ||
+        //                 value == -2000 ||
+        //                 value == -1000 ||
+        //                 value == 0 ||
+        //                 value == 1000 ||
+        //                 value == 2000 ||
+        //                 value == 3000) {
+        //               return value.toString();
+        //             }
+        //             return '';
+        //           },
+        //         ),
+        //         bottomTitles: SideTitles(
+        //           showTitles: true,
+        //           reservedSize: 22,
+        //           getTitles: (value) {
+        //             return value.toInt().toString();
+        //           },
+        //         ),
+        //       ),
+        //       borderData: FlBorderData(show: true, border: Border.all(color: Colors.black)),
+        //       minX: 0,
+        //       maxX: 10,
+        //       minY: -3000,
+        //       maxY: 5000,
+        //       lineBarsData: _buildLineChartData(selectedScenario),
+        //       backgroundColor: const Color(0xFF5197A7).withOpacity(0.26),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

@@ -67,7 +67,7 @@ class _ImpactReplacementReportMainState extends State<ImpactReplacementReportMai
       title: Toolbar.build(
         displayButtons: false,
         rightText: Text(
-          'GHG IMPACT REPLACEMENT',
+          'IMPACT REPORT',
           style: TextStyle(color: Colors.black),
         ),
         hoverOn: 0,

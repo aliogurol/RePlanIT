@@ -104,6 +104,24 @@ class _ServersImpactReportTableState extends State<ServersImpactReportTable> {
   }
   
   List<Widget> buildTotals() {
+    double ghgEmissions = 0;
+    double co2Costs = 0;
+    double eWastes = 0;
+    double circularity = 0;
+    double electricityUse = 0;
+    double electricityCosts = 0;
+    double virginMaterials = 0;
+
+    widget.selectedScenarios.forEach((element) {
+      ghgEmissions += double.parse(element['totalGHGEmission']);
+      co2Costs += double.parse(element['co2_costs']);
+      eWastes += double.parse(element['eWaste']);
+      electricityUse += double.parse(element['electricityUse']);
+      circularity += double.parse(element['circularity']);
+      virginMaterials += double.parse(element['virginMaterials']);
+      electricityCosts += double.parse(element['electricityCost']);
+    });
+
     final greenStyle = TextStyle(color: Colors.green, fontWeight: FontWeight.bold);
     return [
       TableCell(
@@ -112,7 +130,7 @@ class _ServersImpactReportTableState extends State<ServersImpactReportTable> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('--46,8 kton kgCO2eq.', style: greenStyle),
+              child: Text('$ghgEmissions kton CO₂eq.', style: greenStyle),
             ),
           ],
         ),
@@ -122,7 +140,7 @@ class _ServersImpactReportTableState extends State<ServersImpactReportTable> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              child: Text('- € 19.563,-', style: greenStyle),
+              child: Text('-€ $co2Costs ,-', style: greenStyle),
               padding: const EdgeInsets.all(8.0),
             ),
           ],
@@ -134,7 +152,7 @@ class _ServersImpactReportTableState extends State<ServersImpactReportTable> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('341 kg.', style: greenStyle),
+              child: Text('$virginMaterials kg.', style: greenStyle),
             ),
           ],
         ),
@@ -145,7 +163,7 @@ class _ServersImpactReportTableState extends State<ServersImpactReportTable> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('220 kg.', style: greenStyle),
+              child: Text('$eWastes kg.', style: greenStyle),
             ),
           ],
         ),
@@ -156,7 +174,7 @@ class _ServersImpactReportTableState extends State<ServersImpactReportTable> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('40 %', style: greenStyle),
+              child: Text('%', style: greenStyle),
             ),
           ],
         ),
@@ -167,7 +185,7 @@ class _ServersImpactReportTableState extends State<ServersImpactReportTable> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('-159 kWh', style: greenStyle),
+              child: Text('$electricityUse kWh', style: greenStyle),
             ),
           ],
         ),
@@ -178,7 +196,7 @@ class _ServersImpactReportTableState extends State<ServersImpactReportTable> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text('-€ 47.700,-', style: greenStyle),
+              child: Text('-€ $electricityCosts ,-', style: greenStyle),
             ),
           ],
         ),
@@ -505,7 +523,7 @@ class _ServersImpactReportTableState extends State<ServersImpactReportTable> {
       ),
     );
 
-    print(widget.selectedScenarios);
+print(widget.selectedScenarios);
     widget.selectedScenarios.forEach((scenario) {
       Map<dynamic, dynamic> getScenario = tempImpactReportScenarios.firstWhere((element) => element['scenario'] == scenario['action']);
       rows.add(TableRow(

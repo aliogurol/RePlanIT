@@ -31,7 +31,6 @@ class _ServersImpactReportActionsTableState extends State<ServersImpactReportAct
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: widget.selectedScenarios.map((scenario) {
-              print(widget.selectedScenarios);
               return Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text(scenario['action'], style: TextStyle(color: Colors.green)),
@@ -41,7 +40,6 @@ class _ServersImpactReportActionsTableState extends State<ServersImpactReportAct
           SizedBox(height: 20),
           Text('TOTAL', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),),
           SizedBox(height: 25),
-          Text('KPN targets 2025', style: TextStyle(fontWeight: FontWeight.bold),)
         ],
     );
   }

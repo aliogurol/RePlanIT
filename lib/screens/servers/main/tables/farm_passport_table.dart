@@ -13,14 +13,14 @@ class FarmPassportTable extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Farm Passport'),
+          Text('Datacenter Passport'),
           SizedBox(height: 20),
           Table(
             defaultColumnWidth: IntrinsicColumnWidth(),
             children: [
-              _buildTableRow('Farm name', name),
-              _buildTableRow('Farm Location', location),
-              _buildTableRow('Farm Size', '127 servers'),
+              _buildTableRow('Datacenter name', name),
+              _buildTableRow('Datacenter Location', location),
+              _buildTableRow('Datacenter Size', '127 servers'),
               _buildTableRow('CPU Capacity', '12,801 GHz'),
               _buildTableRow('Memory Capacity', '96 TB'),
               _buildTableRow('Energy Consumption per year', '350 MWh'),

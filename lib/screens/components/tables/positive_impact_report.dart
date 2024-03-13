@@ -198,7 +198,6 @@ class _PositiveImpactReportTableState extends State<PositiveImpactReportTable> {
                               value: selectedQuantity,
                               onChanged: (int? newValue) {
                                 setState(() {
-                                  print(newValue);
                                   selectedQuantity = newValue ?? 1;
                                 });
                               },

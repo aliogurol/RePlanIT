@@ -12,7 +12,7 @@ class PlannedAction extends StatefulWidget {
 
 class _PlannedActionState extends State<PlannedAction> {
   bool selectAll = false;
-  String dropdownValue = 'support expiring';
+  String dropdownValue = 'advised by RePlanIT';
   String replaceDropdownValue = 'same';
   double capacityPercentage = 10.0;
   List<String> selectedServers = [];
@@ -54,7 +54,7 @@ class _PlannedActionState extends State<PlannedAction> {
                           dropdownValue = newValue!;
                           updateSelectedServers();
                         }),
-                        items: ['support expiring', 'unhealthy', 'broken', 'ineffective', 'all']
+                        items: ['advised by RePlanIT', 'support expiring', 'unhealthy', 'broken', 'ineffective', 'all']
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -67,8 +67,28 @@ class _PlannedActionState extends State<PlannedAction> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
-            Text('Selections', style: bold),
+            Padding(
+              padding: const EdgeInsets.only(top: 40),
+              child: Text('With a total CPU capacity of', style: bold),
+            ),
+            Row(
+              children: [
+                Container(
+                  width: 60,
+                  child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) => setState(() {
+                      capacityPercentage = double.parse(value);
+                    }),
+                  ),
+                ),
+                Text('% of the current CPU capacity of 12,8 Gz'),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 40),
+              child: Text('Resulting selections', style: bold),
+            ),
             CheckboxListTile(
               contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
               controlAffinity: ListTileControlAffinity.leading,
@@ -80,33 +100,9 @@ class _PlannedActionState extends State<PlannedAction> {
                 widget.onSelect(getSelectedServerData());
               }),
             ),
-            for (String server in selectedServers)
-              CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                title: Row(
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFD9D9D9),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        side: BorderSide(width: 1, color: Colors.black),
-                      ),
-                      onPressed: () {},
-                      child: Text('Server $server', style: TextStyle(color: Colors.black)),
-                    ),
-                    SizedBox(width: 10),
-                    Text(dropdownValue),
-                  ],
-                ),
-                value: serverSelection[server] ?? false,
-                onChanged: (bool? value) => setState(() {
-                  serverSelection[server] = value!;
-                  updateSelectAll();
-                  widget.onSelect(getSelectedServerData());
-                }),
-              ),
+            Column(
+              children: _buildCheckboxTiles(dropdownValue),
+            ),
             SizedBox(height: 10),
             Row(
               children: <Widget>[
@@ -176,12 +172,80 @@ class _PlannedActionState extends State<PlannedAction> {
         .where((server) => serverSelection[server] == true)
         .map((server) => {
               'server': server,
-              'action': 'Replace servers with by 10 new',
-              'totalGHGEmission': server == '123' ? '110' : '22',
-              'energy': '-100',
-              'eWaste': server == '123' ? '250' : '100',
+              'action': server == '123' ? 'Replace 93 servers by 31 new' : 'Replace 93 servers by 31 refurbished',
+              'totalGHGEmission': server == '123' ? '-16.6' : '-18.7',
+              'energy': '-77',
+              'eWaste': server == '123' ? '348' : '0',
+              'circularity': server == '123' ? '32' : '37',
+              'scenario': server == '123' ? 'S1' : 'S2',
+              'electricityUse': '-77',
+              'electricityCost': '0',
+              'virginMaterials': '0',
+              'co2_costs': '0',
               'isSelected': false,
             })
         .toList();
+  }
+  
+ List<CheckboxListTile> _buildCheckboxTiles(String dropdownValue) {
+    List<String> serversToRemove = [];
+
+    if (dropdownValue == 'advised by RePlanIT') {
+      serversToRemove.add('126');
+      serversToRemove.add('127');
+    } else if (dropdownValue == 'support expiring') {
+        serversToRemove.add('124');
+        serversToRemove.add('125');
+    }else if (dropdownValue == 'unhealthy') {
+        serversToRemove.add('123');
+        serversToRemove.add('124');
+        serversToRemove.add('125');
+    }else if (dropdownValue == 'broken') {
+        serversToRemove.add('123');
+        serversToRemove.add('124');
+        serversToRemove.add('125');
+        serversToRemove.add('126');
+    }else if (dropdownValue == 'ineffective') {
+        serversToRemove.add('123');
+        serversToRemove.add('124');
+        serversToRemove.add('125');
+    }
+
+    List<CheckboxListTile> tiles = [];
+    for (String server in selectedServers){
+      if (serversToRemove.contains(server)) {
+          continue;
+      }
+
+      tiles.add(
+        CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: Row(
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFFD9D9D9),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  side: BorderSide(width: 1, color: Colors.black),
+                ),
+                onPressed: () {},
+                child: Text('Server $server', style: TextStyle(color: Colors.black)),
+              ),
+              SizedBox(width: 10),
+              Text(dropdownValue),
+            ],
+          ),
+          value: serverSelection[server] ?? false,
+          onChanged: (bool? value) => setState(() {
+            serverSelection[server] = value!;
+            updateSelectAll();
+            widget.onSelect(getSelectedServerData());
+          }),
+        )
+      );
+    }
+    return tiles;
   }
 }
